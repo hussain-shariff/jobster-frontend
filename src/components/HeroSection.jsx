@@ -18,9 +18,11 @@ function HeroSection() {
                     Register
                 </button>
             </Link>
-            <button className='transition ease-out duration-500 border-2 ml-7 border-[#8035eb] py-2 px-10 rounded-lg hover:bg-[#8035eb] font-semibold'>
-                Sign In
-            </button>
+            <Link to={'/signIn'}>
+                <button className='transition ease-out duration-500 border-2 ml-7 border-[#8035eb] py-2 px-10 rounded-lg hover:bg-[#8035eb] font-semibold'>
+                    Sign In
+                </button>
+            </Link>
         </div>
     </div>
   )
