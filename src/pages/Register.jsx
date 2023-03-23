@@ -5,8 +5,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
 import sendRegisterData from '../hooks/useRegister';
+import { useNavigate } from "react-router-dom"
 
 function Register() {
+    const navigate = useNavigate()
     const [loading, setloading] = useState(false)
     const [formData, setformData] = useState({
         Username : "",
@@ -21,7 +23,8 @@ function Register() {
             formData.Username,
             formData.Email,
             formData.Password,
-            setloading
+            setloading,
+            navigate
             )
         setformData({
             Username : "",

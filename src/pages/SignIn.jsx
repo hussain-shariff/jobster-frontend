@@ -5,8 +5,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
 import sendLoginData from '../hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
+    const navigate = useNavigate()
     const [loading, setloading] = useState(false)
     const [formData, setformData] = useState({
         Email : "",
@@ -19,7 +21,8 @@ function SignIn() {
         await sendLoginData(
             formData.Email,
             formData.Password,
-            setloading
+            setloading,
+            navigate
         )
         setformData({
             Email : "",
