@@ -1,12 +1,37 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
+import ClipLoader from "react-spinners/ClipLoader";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
 
 function SignIn() {
+    const [error, seterror] = useState(false)
+    const [loading, setloading] = useState(false)
     const [formData, setformData] = useState({
         Email : "",
         Password : ""
     })
+
+    const notifySuccess = () => toast.success('🦄 Sign in successfull', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+        })
+    
+    const notifyError = () => toast.error('Invalid Username or password', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+        });
 
     const sendLoginData = async () =>{
         fetch('https://jobs-api-81wf.onrender.com/api/v1/auth/login', {
@@ -19,13 +44,20 @@ function SignIn() {
         })
             .then(res=> res.json())
             .then(json=> {
+                setloading(false)
+                notifySuccess()
                 localStorage.setItem('user', json.user)
                 localStorage.setItem('token', json.token)
+            })
+            .catch(err=> {
+                setloading(false)
+                notifyError()
             })
     }
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
+        setloading(true)
         await sendLoginData()
         setformData({
             Email : "",
@@ -55,8 +87,15 @@ function SignIn() {
             <button type='submit' className='bg-gradient-to-r from-green-200  to-pink-300 py-2 px-10 rounded-md 
             font-semibold hover:scale-105 transition ease-out duration-500 w-full text-black'>
                 Sign in
+                <ClipLoader
+                    color='#230e2e'
+                    loading={loading}
+                    size={20}
+                    className='ml-2 -mb-1'
+                />
             </button>
-            <p className='text-gray-400 mt-4 text-center'>Need an account?
+            <ToastContainer/>
+            <p className='text-gray-400 text-center'>Need an account?
                 <Link to={'/register'}>
                     <span className='border px-2 py-1 rounded-md ml-2 cursor-pointer hover:border-blue-600
                     transition ease-out duration-500'>Sign up</span>

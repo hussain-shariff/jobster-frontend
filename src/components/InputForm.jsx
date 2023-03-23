@@ -1,7 +1,10 @@
 import React from 'react'
 
-function InputForm({ name, type, value, placeholder, autoComplete, setformData }) {
+function InputForm({ name, type, value, autoComplete, setformData, error, seterror }) {
     const handleChange = (e) =>{
+        if(seterror){
+          seterror(false)
+        }
         setformData(prevState=>({
                 ...prevState,
                 [e.target.name] : e.target.value
@@ -9,10 +12,10 @@ function InputForm({ name, type, value, placeholder, autoComplete, setformData }
     }
   return (
     <div>
-        <label htmlFor={name}>{ name }</label>
-        <input required name={name} id={name} value={value} type={type} className='mt-2 p-2 bg-inherit border-2
-        border-gray-500 rounded-md w-full focus:outline-none focus:border-blue-600' placeholder={ placeholder }
+        <input required name={name} id={name} value={value} type={type} className={`mt-2 p-2 bg-inherit border-2
+        rounded-md w-full focus:outline-none ${error ? 'border-red-500' :'border-gray-500'} focus:border-blue-600`} placeholder={ name }
         autoComplete={ autoComplete } onChange={handleChange} />
+        {error && <p className='text-red-500 text-sm mt-1'>Email already in use</p>}
     </div>
   )
 }
