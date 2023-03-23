@@ -4,7 +4,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
-import sendRegisterData from '../hooks/register';
+import sendRegisterData from '../hooks/useRegister';
 
 function Register() {
     const [loading, setloading] = useState(false)

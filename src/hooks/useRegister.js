@@ -1,4 +1,4 @@
-import { notifySuccess, notifyError } from "./notifications"
+import { notifySuccess, notifyError } from "./useNotifications"
 
 const sendRegisterData = async (name, email, password, setloading) =>{
     fetch('https://jobs-api-81wf.onrender.com/api/v1/auth/register', {

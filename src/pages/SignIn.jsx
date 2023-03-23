@@ -4,7 +4,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
-import sendLoginData from '../hooks/login';
+import sendLoginData from '../hooks/useLogin';
 
 function SignIn() {
     const [loading, setloading] = useState(false)
