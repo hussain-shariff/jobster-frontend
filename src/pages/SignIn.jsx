@@ -1,64 +1,26 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import ClipLoader from "react-spinners/ClipLoader";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
+import sendLoginData from '../hooks/login';
 
 function SignIn() {
-    const [error, seterror] = useState(false)
     const [loading, setloading] = useState(false)
     const [formData, setformData] = useState({
         Email : "",
         Password : ""
     })
 
-    const notifySuccess = () => toast.success('🦄 Sign in successfull', {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-        })
-    
-    const notifyError = () => toast.error('Invalid Username or password', {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-        });
-
-    const sendLoginData = async () =>{
-        fetch('https://jobs-api-81wf.onrender.com/api/v1/auth/login', {
-            method : "POST",
-            headers : { 'content-type' : 'application/json'},
-            body : JSON.stringify({
-                email : formData.Email,
-                password : formData.Password
-            })
-        })
-            .then(res=> res.json())
-            .then(json=> {
-                setloading(false)
-                notifySuccess()
-                localStorage.setItem('user', json.user)
-                localStorage.setItem('token', json.token)
-            })
-            .catch(err=> {
-                setloading(false)
-                notifyError()
-            })
-    }
-
     const handleSubmit = async (e) =>{
         e.preventDefault()
         setloading(true)
-        await sendLoginData()
+        await sendLoginData(
+            formData.Email,
+            formData.Password,
+            setloading
+        )
         setformData({
             Email : "",
             Password : ""

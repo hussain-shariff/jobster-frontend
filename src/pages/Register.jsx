@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import ClipLoader from "react-spinners/ClipLoader";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
+import sendRegisterData from '../hooks/register';
 
 function Register() {
-    const [error, seterror] = useState(false)
     const [loading, setloading] = useState(false)
     const [formData, setformData] = useState({
         Username : "",
@@ -14,44 +14,15 @@ function Register() {
         Password : ""
     })
 
-    const notify = () => toast.success('🦄 Registered successfully', {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-        })
-
-    const sendRegisterData = async () =>{
-        fetch('https://jobs-api-81wf.onrender.com/api/v1/auth/register', {
-            method : "POST",
-            headers : { 'content-type' : 'application/json'},
-            body : JSON.stringify({
-                username : formData.Username,
-                email : formData.Email,
-                password : formData.Password
-            })
-        })
-            .then(res=> res.json())
-            .then(json=> {
-                seterror(false)
-                setloading(false)
-                localStorage.setItem('token', json.token)
-                localStorage.setItem('user', json.user)
-                notify()
-            })
-            .catch(err=> {
-                seterror(true)
-                setloading(false)
-            })
-    }
-
     const handleSubmit = async (e) =>{
         e.preventDefault()
         setloading(true)
-        await sendRegisterData()
+        await sendRegisterData(
+            formData.Username,
+            formData.Email,
+            formData.Password,
+            setloading
+            )
         setformData({
             Username : "",
             Email : "",
@@ -76,8 +47,7 @@ function Register() {
                 value = {formData.Email}
                 autoComplete ='email'
                 setformData = { setformData }
-                error={error}
-                seterror={seterror} />
+                />
             <InputForm 
                 name="Password"
                 type="password"
