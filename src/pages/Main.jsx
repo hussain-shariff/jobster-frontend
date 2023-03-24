@@ -9,7 +9,7 @@ import {
   faUser,
   faCaretDown
   } from '@fortawesome/free-solid-svg-icons'
-import SideSectionItem from '../components/sideSectionItem'
+import SideSectionItem from '../components/SideSectionItem'
 import Logo from '../components/Logo'
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
