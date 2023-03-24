@@ -13,10 +13,12 @@ const sendRegisterData = async (name, email, password, setloading, navigate) =>{
         .then(res=> res.json())
         .then(json=> {
             setloading(false)
+            notifySuccess('Registered successfully')
             localStorage.setItem('token', json.token)
             localStorage.setItem('user', json.user)
-            notifySuccess('Registered successfully')
-            navigate('/dashboard')
+            setTimeout(()=>{
+                navigate('/dashboard')
+            }, 2000)
         })
         .catch(err=> {
             notifyError('Email already in use')

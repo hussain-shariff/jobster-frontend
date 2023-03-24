@@ -71,7 +71,7 @@ function Register() {
             <ToastContainer/>
             <p className='text-gray-400 text-center'>Already have an account?
                 <Link to={'/signIn'}>
-                    <span className='border px-2 py-1 rounded-md ml-2 cursor-pointer hover:border-blue-600
+                    <span className='border-b ml-2 cursor-pointer hover:border-blue-600
                     transition ease-out duration-500'>Sign in</span>
                 </Link>
             </p>

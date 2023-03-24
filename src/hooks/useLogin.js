@@ -11,11 +11,13 @@ const sendLoginData = async (email, password, setloading, navigate) =>{
     })
         .then(res=> res.json())
         .then(json=> {
-            setloading(false)
             notifySuccess('Sign in successfull')
+            setloading(false)
             localStorage.setItem('user', json.user)
             localStorage.setItem('token', json.token)
-            navigate('/dashboard')
+            setTimeout(()=>{
+                navigate('/dashboard')
+            }, 2000)
         })
         .catch(err=> {
             setloading(false)
@@ -24,3 +26,4 @@ const sendLoginData = async (email, password, setloading, navigate) =>{
 }
 
 export default sendLoginData
+
