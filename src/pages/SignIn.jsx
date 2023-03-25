@@ -31,9 +31,10 @@ function SignIn() {
     }
 
   return (
-    <form onSubmit={handleSubmit} className='h-screen bg-gradient-to-tr from-[#13101d] via-[#230e2e] to-[#2f1329]
-        flex items-center justify-center'>
-        <div className=' text-gray-500 flex flex-col gap-4 bg-[rgba(0,0,0,.1)] p-10 rounded-lg'>
+    <form onSubmit={handleSubmit} className='h-screen bg-gradient-to-l from-[#120e3e] via-[#100b3a] to-[#000000]
+         relative'>
+        <div className=' text-white w-80 flex flex-col gap-4 p-10 rounded-lg
+        absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-blur-xl bg-white/30 border'>
             <h1 className='text-center text-white font-semibol text-3xl'>Sign in to Jobster</h1>
             <InputForm 
                 name="Email"
@@ -49,7 +50,7 @@ function SignIn() {
                 placeholder=""
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button type='submit' className='bg-gradient-to-r from-green-200  to-pink-300 py-2 px-10 rounded-md 
+            <button type='submit' className='bg-gradient-to-r from-green-200  to-pink-200 py-2 px-10 rounded-md 
             font-semibold hover:scale-105 transition ease-out duration-500 w-full text-black'>
                 Sign in
                 <ClipLoader
@@ -59,14 +60,14 @@ function SignIn() {
                     className='ml-2 -mb-1'
                 />
             </button>
-            <ToastContainer/>
-            <p className='text-gray-400 text-center'>Need an account?
+            <p className='text-center'>Need an account?
                 <Link to={'/register'}>
                     <span className='border-b ml-2 cursor-pointer hover:border-blue-600
                     transition ease-out duration-500'>Sign up</span>
                 </Link>
             </p>
         </div>
+        <ToastContainer/>
     </form>
   )
 }

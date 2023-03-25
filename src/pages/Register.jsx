@@ -34,10 +34,10 @@ function Register() {
     }
 
   return (
-    <form className='h-screen bg-gradient-to-tr from-[#13101d] via-[#230e2e] to-[#2f1329] 
+    <form className='h-screen bg-gradient-to-l from-[#120e3e] via-[#100b3a] to-[#000000]
     flex items-center justify-center' onSubmit={handleSubmit}>
-        <div className=' text-gray-500 flex flex-col gap-4 bg-[rgba(0,0,0,.1)] p-10 rounded-xl'>
-            <h1 className='text-center text-white font-semibol text-3xl'>Sign up for Jobster</h1>
+        <div className=' text-white flex flex-col gap-4 bg-white/30 backdrop-blur-3xl border p-10 rounded-xl'>
+            <h1 className='text-center font-semibol text-3xl'>Sign up for Jobster</h1>
             <InputForm 
                 name="Username"
                 type="text"
@@ -57,7 +57,7 @@ function Register() {
                 value = {formData.Password}
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button className='bg-gradient-to-r from-green-200  to-pink-300 py-2 px-10 rounded-md 
+            <button className='bg-gradient-to-r from-green-200  to-pink-200 py-2 px-10 rounded-md 
             font-semibold hover:scale-105 transition ease-out duration-500 w-full text-black'
             type='submit'>
                 Complete Sign Up
@@ -69,7 +69,7 @@ function Register() {
                 />
             </button>
             <ToastContainer/>
-            <p className='text-gray-400 text-center'>Already have an account?
+            <p className='text-center'>Already have an account?
                 <Link to={'/signIn'}>
                     <span className='border-b ml-2 cursor-pointer hover:border-blue-600
                     transition ease-out duration-500'>Sign in</span>

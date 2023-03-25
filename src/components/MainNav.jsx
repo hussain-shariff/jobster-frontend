@@ -19,7 +19,8 @@ function MainNav({user, showSideBar ,setshowSideBar}) {
     }
 
   return (
-    <div className='text-white z-50 sticky top-0 backdrop-blur-md flex items-center justify-between px-10 py-5 md:px-20'>
+    <div className='text-white z-50 sticky top-0 backdrop-blur-md flex items-center 
+    justify-between px-10 py-5 md:px-20'>
         <div>
             {!showSideBar && <div className='flex gap-3 items-center'>
                 <FontAwesomeIcon onClick={()=> setshowSideBar(!showSideBar)} icon={faBars} className='h-6 cursor-pointer'/>
