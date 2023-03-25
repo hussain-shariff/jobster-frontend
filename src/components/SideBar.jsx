@@ -9,6 +9,7 @@ import {
   faFileInvoice,
   faAddressCard,
   } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 function SideBar({setshowSideBar}) {
   return (
@@ -16,13 +17,15 @@ function SideBar({setshowSideBar}) {
         initial = {{ x : '-150vw' }}
         animate = {{ x : 0 }}
         transition = {{ duration: 0.6 }}
-        className='h-screen w-60 text-gray-400 bg-gradient-to-r from-[#3e387248] to-[#6c639d45] fixed top-0 left-0'>
+        className='h-screen z-50 w-full text-gray-400 bg-gradient-to-r from-[#130e3e] to-[#0b072e] fixed top-0 left-0 md:w-60'>
             <FontAwesomeIcon icon={faBars} className=' h-7 cursor-pointer absolute top-5 right-7'
             onClick={()=>setshowSideBar(!setshowSideBar)}/>
             <div className='flex flex-col mt-20  items-center gap-5'>
-                <SideSectionItem
-                    name='Stats'
-                    icon= {faChartSimple} />
+                <Link to={'/dashboard/stats'}>
+                  <SideSectionItem
+                      name='Stats'
+                      icon= {faChartSimple} />
+                </Link>
                 <SideSectionItem
                     name='All jobs'
                     icon={faMagnifyingGlass}/>
