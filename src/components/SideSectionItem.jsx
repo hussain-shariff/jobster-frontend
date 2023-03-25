@@ -1,12 +1,5 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-    faBars,
-    faChartSimple,
-    faMagnifyingGlass,
-    faFileInvoice,
-    faAddressCard 
-    } from '@fortawesome/free-solid-svg-icons'
 
 function SideSectionItem({ name, icon}) {
   return (
