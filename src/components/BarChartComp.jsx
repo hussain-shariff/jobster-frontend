@@ -31,7 +31,7 @@ const BarChartComp = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="count" fill="#8884d8" />
+          <Bar dataKey="count" fill="#6520a4" />
         </BarChart>
       </ResponsiveContainer>
     );
