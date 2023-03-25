@@ -17,7 +17,7 @@ function Main() {
   }, [])
 
   return (
-    <div className='h-[105vh] bg-gradient-to-l from-[#130e3e] to-[#030209]'>
+    <div className='h-[200vh] bg-gradient-to-l from-[#130e3e] to-[#030209]'>
         <MainNav
           showSideBar={showSideBar}
           setshowSideBar={setshowSideBar}
