@@ -12,7 +12,7 @@ function Stats() {
   const [showBarChart, setshowBarChart] = useState(true)
   return (
     <div>
-      <div className='grid grid-cols-1 gap-6 px-6 md:grid-cols-3 md:px-10 my-10'>
+      <div className='grid grid-cols-1 gap-6 px-6 md:grid-cols-3 md:px-10 my-3'>
           <StatsCard
           color="blue"
           icon={faSuitcaseRolling}
@@ -30,9 +30,9 @@ function Stats() {
           number={30}
           stat='Jobs Declined'/>
       </div>
-      <div className='mx-auto mt-10 md:w-3/4 flex flex-col items-center'>
+      <div className='mx-auto mt-7 flex flex-col items-center'>
         <h1 className='text-center text-2xl text-white md:text-3xl font-semibold'>Monthly Applications</h1>
-        <div className='text-[#8884d8] group flex w-32 cursor-pointer mt-3 mb-7 text-xl font-semibold'
+        <div className='text-[#8884d8] group flex w-32 cursor-pointer mt-3 mb-5 text-xl font-semibold'
         onClick={()=> setshowBarChart(!showBarChart)}>
           {showBarChart?  'Area Chart' : "Bar Chart" } 
           <h1 className='group-hover:translate-x-2

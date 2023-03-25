@@ -5,7 +5,7 @@ import data from '../data';
 const AreaChartComp = () => {
 
     return (
-        <ResponsiveContainer width="100%" aspect={2}>
+        <ResponsiveContainer width="100%" aspect={3}>
             <AreaChart
             width={500}
             height={400}

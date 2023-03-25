@@ -14,9 +14,9 @@ import data from '../data';
 
 const BarChartComp = () => {
     return (
-      <ResponsiveContainer width="100%" aspect={2}>
+      <ResponsiveContainer max-width="75%" aspect={3}>
         <BarChart
-          width="100"
+          width={500}
           height={300}
           data={data}
           margin={{
