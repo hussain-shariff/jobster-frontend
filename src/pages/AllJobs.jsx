@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function AllJobs() {
+    const user = localStorage.getItem('user')
+    const navigate = useNavigate()
 
     const getAllJobs = async () =>{
+        const token = localStorage.getItem('token')
         fetch('https://jobs-api-81wf.onrender.com/api/v1/jobs', {
             method : "GET",
             headers : {
-                Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NDFiMDIwMmNhMDM5OGM0MmJhYTM1MjEiLCJuYW1lIjoiZWxvbiIsImlhdCI6MTY3OTQ5MTYwOCwiZXhwIjoxNjgyMDgzNjA4fQ.JjUq3Qg5wdz05Z1zRWWiK6x0KSaFHGT3z4Cgpc843hQ'
+                Authorization : `Bearer ${token}` 
             }
         })
             .then(res=> res.json())
@@ -15,10 +19,15 @@ function AllJobs() {
     }
 
     useEffect(()=>{
-        const getJobs = async () =>{
-            await getAllJobs()
+        if(!user){
+            navigate('/')
         }
-        getJobs()
+        else{
+            const getJobs = async () =>{
+                await getAllJobs()
+            }
+            getJobs()
+        }
     }, [])
 
   return (

@@ -27,9 +27,11 @@ function SideBar({setshowSideBar}) {
                       name='Stats'
                       icon= {faChartSimple} />
                 </Link>
-                <SideSectionItem
-                    name='All jobs'
-                    icon={faMagnifyingGlass}/>
+                <Link to={'/dashboard/allJobs'}>
+                  <SideSectionItem
+                      name='All jobs'
+                      icon={faMagnifyingGlass}/>
+                </Link>
                 <SideSectionItem
                     name='Add a job'
                     icon={faFileInvoice}/>
