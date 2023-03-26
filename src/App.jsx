@@ -3,6 +3,7 @@ import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Main from "./pages/Main";
+import AllJobs from "./pages/AllJobs";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signIn" element = { <SignIn/> }></Route>
           <Route path="/dashboard" element = { <Main/> }></Route>
           <Route path="/dashboard/stats" element = { <Main/> }></Route>
+          <Route path="/dashboard/allJobs" element = { <AllJobs/> }></Route>
         </Routes>
       </Router>
     </div>
