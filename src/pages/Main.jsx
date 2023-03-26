@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import SideBar from '../components/SideBar'
 import MainNav from '../components/MainNav';
 import Stats from './Stats';
+import AllJobs from './AllJobs';
 
 function Main() {
   const user = localStorage.getItem('user')
   const navigate = useNavigate()
+  const [currentPage, setcurrentPage] = useState('Stats')
   const [showSideBar, setshowSideBar] = useState(false)
 
   useEffect(()=>{
@@ -24,8 +26,10 @@ function Main() {
           user={user}/>
         {showSideBar && 
         <SideBar
-          setshowSideBar={setshowSideBar}/>}
-        <Stats/>
+          setshowSideBar={setshowSideBar}
+          setcurrentPage = {setcurrentPage}/>}
+        {currentPage === 'Stats' && <Stats/>}
+        {currentPage === 'All jobs' && <AllJobs/>}
     </div>
   )
 }

@@ -9,9 +9,8 @@ import {
   faFileInvoice,
   faAddressCard,
   } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
 
-function SideBar({setshowSideBar}) {
+function SideBar({setshowSideBar, setcurrentPage}) {
   return (
     <motion.div 
         initial = {{ x : '-150vw' }}
@@ -22,22 +21,22 @@ function SideBar({setshowSideBar}) {
             <FontAwesomeIcon icon={faBars} className=' h-7 cursor-pointer absolute top-5 right-7'
             onClick={()=>setshowSideBar(!setshowSideBar)}/>
             <div className='flex flex-col mt-20  items-center gap-5'>
-                <Link to={'/dashboard/stats'}>
-                  <SideSectionItem
-                      name='Stats'
-                      icon= {faChartSimple} />
-                </Link>
-                <Link to={'/dashboard/allJobs'}>
-                  <SideSectionItem
-                      name='All jobs'
-                      icon={faMagnifyingGlass}/>
-                </Link>
+                <SideSectionItem
+                    name='Stats'
+                    icon= {faChartSimple}
+                    setcurrentPage={setcurrentPage} />
+                <SideSectionItem
+                    name='All jobs'
+                    icon={faMagnifyingGlass}
+                    setcurrentPage={setcurrentPage}/>
                 <SideSectionItem
                     name='Add a job'
-                    icon={faFileInvoice}/>
+                    icon={faFileInvoice}
+                    setcurrentPage={setcurrentPage}/>
                 <SideSectionItem
                     name='Profile'
-                    icon={faAddressCard}/>
+                    icon={faAddressCard}
+                    setcurrentPage={setcurrentPage}/>
             </div>
     </motion.div>
   )
