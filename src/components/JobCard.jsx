@@ -6,7 +6,7 @@ import {
   } from '@fortawesome/free-solid-svg-icons'
 import JobItem from './JobItem'
 
-function JobCard({position, company, status, createdAt}) {
+function JobCard({position, company, status, createdAt, location, type}) {
 
   return (
     <div className='bg-white/20 backdrop-blur-3xl p-5 rounded-md
@@ -26,10 +26,10 @@ function JobCard({position, company, status, createdAt}) {
             <div className='flex flex-col gap-1'>
                 <JobItem
                     icon={faLocationDot}
-                    name="Kiamda"/>
+                    name={location}/>
                 <JobItem
                     icon={faBriefcase}
-                    name="Internship"/>
+                    name={type}/>
             </div>
             <div className=''>
                 <JobItem

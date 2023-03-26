@@ -45,6 +45,8 @@ function AllJobs() {
                         company={job.company}
                         createdAt ={job.createdAt}
                         status ={job.status}
+                        location={job.location}
+                        type={job.jobType}
                         />
                 ))
             }
