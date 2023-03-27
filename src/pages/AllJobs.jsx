@@ -42,6 +42,7 @@ function AllJobs() {
                 jobs.map(job=>(
                     <JobCard
                         key={job._id}
+                        id = {job._id}
                         position={job.position}
                         company={job.company}
                         createdAt ={job.createdAt}

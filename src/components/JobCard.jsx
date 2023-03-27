@@ -10,7 +10,7 @@ import {
 import JobItem from './JobItem'
 import moment from 'moment'
 
-function JobCard({position, company, status, createdAt, location, type}) {
+function JobCard({id, position, company, status, createdAt, location, type}) {
     let icon;
     if(status.toLowerCase() === "pending"){
         icon = faClock
@@ -22,6 +22,23 @@ function JobCard({position, company, status, createdAt, location, type}) {
 
     let date = moment(createdAt)
     date = date.format('MMM Do, YYYY')
+
+    const deleteJob = async () =>{
+        const token = localStorage.getItem('token')
+        fetch(`https://jobs-api-81wf.onrender.com/api/v1/jobs/${id}`, {
+            method : "DELETE",
+            headers : {
+                Authorization : `Bearer ${token}` 
+            }
+        })
+            .then(res=> res.json())
+            .then(json=> console.log(json))
+            .catch(err=> console.log(err))
+    }
+
+    const handleDelete = async () =>{
+        await deleteJob()
+    }
 
   return (
     <div className='bg-white/20 backdrop-blur-3xl p-5 rounded-md
@@ -59,7 +76,8 @@ function JobCard({position, company, status, createdAt, location, type}) {
             <button className='border-gray-400 border-2 px-2 text-gray-400 rounded-md mr-3
             hover:text-purple-300 hover:border-purple-300'>Edit</button>
             <button className='border-gray-400 border-2 px-2 text-gray-400 rounded-md
-            hover:text-purple-300 hover:border-purple-300'>Delete</button>
+            hover:text-purple-300 hover:border-purple-300'
+            onClick={handleDelete}>Delete</button>
         </div>
     </div>
   )
