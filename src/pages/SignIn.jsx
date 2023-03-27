@@ -31,10 +31,10 @@ function SignIn() {
     }
 
   return (
-    <form onSubmit={handleSubmit} className='h-screen bg-gradient-to-l from-[#120e3e] via-[#100b3a] to-[#000000]
+    <form onSubmit={handleSubmit} className='h-screen bg-gradient-to-bl from-[#120e3e] to-[#000000]
          relative'>
         <div className=' text-white w-80 flex flex-col gap-4 p-10 rounded-lg
-        absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-blur-xl bg-white/30 border'>
+        absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-blur-xl bg-white/20'>
             <h1 className='text-center text-white font-semibol text-3xl'>Sign in to Jobster</h1>
             <InputForm 
                 name="Email"

@@ -2,11 +2,26 @@ import React from 'react'
 import {
     faLocationDot,
     faBriefcase,
-    faCalendarDays
+    faCalendarDays,
+    faClock,
+    faBan,
+    faPaperPlane
   } from '@fortawesome/free-solid-svg-icons'
 import JobItem from './JobItem'
+import moment from 'moment'
 
 function JobCard({position, company, status, createdAt, location, type}) {
+    let icon;
+    if(status.toLowerCase() === "pending"){
+        icon = faClock
+    }else if (status.toLowerCase() === "declined"){
+        icon = faBan
+    }else{
+        icon = faPaperPlane
+    }
+
+    let date = moment(createdAt)
+    date = date.format('MMM Do, YYYY')
 
   return (
     <div className='bg-white/20 backdrop-blur-3xl p-5 rounded-md
@@ -34,10 +49,10 @@ function JobCard({position, company, status, createdAt, location, type}) {
             <div className=''>
                 <JobItem
                     icon={faCalendarDays}
-                    name="Dec 17th, 2022"/>
-                <button className='border-red-300 border-2 mt-1 px-2 text-sm text-red-300 rounded-md'>
-                    {status}
-                </button>
+                    name={date}/>
+                <JobItem
+                    icon={icon}
+                    name={status}/>
             </div>
         </div>
         <div className='ml-2'>

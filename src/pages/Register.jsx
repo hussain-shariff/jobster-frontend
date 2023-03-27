@@ -34,9 +34,9 @@ function Register() {
     }
 
   return (
-    <form className='h-screen bg-gradient-to-l from-[#120e3e] via-[#100b3a] to-[#000000]
+    <form className='h-screen bg-gradient-to-bl from-[#120e3e]  to-[#000000]
     flex items-center justify-center' onSubmit={handleSubmit}>
-        <div className=' text-white flex flex-col gap-4 bg-white/30 backdrop-blur-3xl border p-10 rounded-xl'>
+        <div className=' text-white flex flex-col gap-4 bg-white/20 backdrop-blur-3xl p-10 rounded-xl'>
             <h1 className='text-center font-semibol text-3xl'>Sign up for Jobster</h1>
             <InputForm 
                 name="Username"
@@ -68,7 +68,6 @@ function Register() {
                     className='ml-2 -mb-1'
                 />
             </button>
-            <ToastContainer/>
             <p className='text-center'>Already have an account?
                 <Link to={'/signIn'}>
                     <span className='border-b ml-2 cursor-pointer hover:border-blue-600
@@ -76,6 +75,7 @@ function Register() {
                 </Link>
             </p>
         </div>
+        <ToastContainer/>
     </form>
   )
 }

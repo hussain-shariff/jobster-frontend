@@ -16,8 +16,8 @@ function SideBar({setshowSideBar, setcurrentPage}) {
         initial = {{ x : '-150vw' }}
         animate = {{ x : 0 }}
         transition = {{ duration: 0.6 }}
-        className='h-screen z-50 w-full text-gray-400 bg-gradient-to-r from-[#130e3e] to-[#0b072e] 
-        fixed top-0 left-0 md:w-60 shadow-lg shadow-gray-500'>
+        className='h-screen z-50 w-full text-white bg-white/20 backdrop-blur-2xl
+        fixed top-0 left-0 md:w-60'>
             <FontAwesomeIcon icon={faBars} className=' h-7 cursor-pointer absolute top-5 right-7'
             onClick={()=>setshowSideBar(!setshowSideBar)}/>
             <div className='flex flex-col mt-20  items-center gap-5'>

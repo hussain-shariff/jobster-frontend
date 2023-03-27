@@ -6,7 +6,6 @@ function AllJobs() {
     const user = localStorage.getItem('user')
     const navigate = useNavigate()
     const [jobs, setjobs] = useState([])
-    console.log(jobs);
 
     const getAllJobs = async () =>{
         const token = localStorage.getItem('token')
@@ -34,9 +33,9 @@ function AllJobs() {
     }, [])
 
   return (
-    <div className='mt-4 max-w-sm mx-auto md:max-w-6xl'>
+    <div className='mt-4 px-10 mx-auto md:px-20'>
         <h1 className='text-white text-2xl font-semibold'>{jobs.length} Jobs Found</h1>
-        <div className='grid grid-cols-1 mt-5 md:grid-cols-3 gap-5'>
+        <div className='grid grid-cols-1 mt-5 md:grid-cols-3 gap-x-5 gap-y-10'>
             {
                 jobs.map(job=>(
                     <JobCard
