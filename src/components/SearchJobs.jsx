@@ -22,6 +22,10 @@ function SearchJobs() {
         }))
     }
 
+    const handleChange = (e) =>{
+        console.log(e)
+    }   
+
   return (
     <div className='text-black p-10 bg-white/20 rounded-md mb-5'>
         <h1 className=' text-white text-center text-2xl md:text-3xl'>Search Form</h1>
@@ -35,17 +39,20 @@ function SearchJobs() {
                 placeholder={'status'}
                 options={statusOptions}
                 isClearable={true}
-                isSearchable={false} />
+                isSearchable={false}
+                onChange={handleChange} />
             <Select
                 placeholder={"type"}
                 options={jobTypeOptions}
                 isClearable={true}
-                isSearchable={false} />
+                isSearchable={false}
+                onChange={handleChange} />
             <Select 
                 placeholder={"sort"}
                 options={sortOptions}
                 isClearable={true} 
-                isSearchable={false}/>
+                isSearchable={false}
+                onChange={handleChange}/>
             <button className='bg-white/30 rounded-md w-36 hover:bg-white/40
             transition ease-out duration-300 py-2 md:py-0 text-white'>
                 Clear filters

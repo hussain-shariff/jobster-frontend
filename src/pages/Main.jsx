@@ -4,6 +4,7 @@ import SideBar from '../components/SideBar'
 import MainNav from '../components/MainNav';
 import Stats from './Stats';
 import AllJobs from './AllJobs';
+import AddJob from './AddJob';
 
 function Main() {
   const user = localStorage.getItem('user')
@@ -30,6 +31,10 @@ function Main() {
           setcurrentPage = {setcurrentPage}/>}
         {currentPage === 'Stats' && <Stats/>}
         {currentPage === 'All jobs' && <AllJobs/>}
+        {currentPage === 'Add a job' && 
+        <div className='px-12 md:px-20 mt-5'>
+            <AddJob/>
+        </div>}
     </div>
   )
 }

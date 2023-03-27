@@ -28,7 +28,7 @@ function JobCard({position, company, status, createdAt, location, type}) {
     hover:scale-105 cursor-pointer transition ease-out duration-500 relative'>
         <div className={`absolute w-1 h-full bg-[#8d53de] top-0 left-0 rounded-l-md`}></div>
         <div className='flex items-center gap-5 border-b-2 pb-5'>
-            <div className='w-12 h-12 bg-purple-500 rounded-md text-white flex items-center
+            <div className='w-12 h-12 bg-purple-500 rounded-full text-white flex items-center
             justify-center text-2xl font-semibold uppercase'>
                 {company[0]}
             </div>
