@@ -1,15 +1,21 @@
 import React, {useState} from 'react'
 import JobInput from './JobInput'
+import Select from 'react-select'
+import {
+    statusOptions,
+    sortOptions,
+    jobTypeOptions
+} from '../searchOptions'
 
 function SearchJobs() {
     const [searchDetails, setSearchDetails] = useState({
-        name : '',
+        Search : '',
         status : '',
         type : '',
         sort : ''
     })
 
-    const handleChange = (e) =>{
+    const handleSearch = (e) =>{
         setSearchDetails(prev=>({
             ...searchDetails,
             [e.target.name] : e.target.value
@@ -17,31 +23,31 @@ function SearchJobs() {
     }
 
   return (
-    <div className='text-white p-10 bg-white/20 rounded-md mb-5'>
-        <h1 className='text-center text-2xl md:text-3xl'>Search Form</h1>
+    <div className='text-black p-10 bg-white/20 rounded-md mb-5'>
+        <h1 className=' text-white text-center text-2xl md:text-3xl'>Search Form</h1>
         <div className='grid grid-cols-1 gap-x-5 gap-y-2 md:grid-cols-3 md:gap-y-3 mt-5'>
             <JobInput
                 name='Search'
-                handleChange={handleChange}
+                handleChange={handleSearch}
                 value={ searchDetails.name }
                 type="text"/>
-            <JobInput
-                name='status'
-                handleChange={handleChange}
-                value={ searchDetails.name }
-                type="text"/>
-            <JobInput
-                name='type'
-                handleChange={handleChange}
-                value={ searchDetails.name }
-                type="text"/>
-            <JobInput
-                name='sort'
-                handleChange={handleChange}
-                value={ searchDetails.name }
-                type="text"/>
+            <Select 
+                placeholder={'status'}
+                options={statusOptions}
+                isClearable={true}
+                isSearchable={false} />
+            <Select
+                placeholder={"type"}
+                options={jobTypeOptions}
+                isClearable={true}
+                isSearchable={false} />
+            <Select 
+                placeholder={"sort"}
+                options={sortOptions}
+                isClearable={true} 
+                isSearchable={false}/>
             <button className='bg-white/30 rounded-md w-36 hover:bg-white/40
-            transition ease-out duration-300 py-2 md:py-0'>
+            transition ease-out duration-300 py-2 md:py-0 text-white'>
                 Clear filters
             </button>
         </div>
