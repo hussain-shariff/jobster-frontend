@@ -11,25 +11,24 @@ import JobItem from './JobItem'
 import moment from 'moment'
 import { useAppContext } from '../context';
 
-function JobCard({id, position, company, status, createdAt, location, type}) {
-    const {setcurrentPage, deleteOneJob} = useAppContext()
+function JobCard({jobDetails}) {
+    const {deleteOneJob, editJob} = useAppContext()
     let icon;
-    if(status.toLowerCase() === "pending"){
+    if(jobDetails.status.toLowerCase() === "pending"){
         icon = faClock
-    }else if (status.toLowerCase() === "declined"){
+    }else if (jobDetails.status.toLowerCase() === "declined"){
         icon = faBan
     }else{
         icon = faPaperPlane
     }
-    let date = moment(createdAt)
+    let date = moment(jobDetails.createdAt)
     date = date.format('MMM Do, YYYY')
 
-
     const handleDelete = () =>{
-        deleteOneJob(id)
+        deleteOneJob(jobDetails._id)
     }
     const handleEdit = () =>{
-        setcurrentPage('Add a job')
+        editJob(jobDetails)
     }
 
   return (
@@ -39,21 +38,21 @@ function JobCard({id, position, company, status, createdAt, location, type}) {
         <div className='flex items-center gap-5 border-b-2 pb-5'>
             <div className='w-12 h-12 bg-purple-500 rounded-full text-white flex items-center
             justify-center text-2xl font-semibold uppercase'>
-                {company[0]}
+                {jobDetails.company[0]}
             </div>
             <div className='text-white text-lg'>
-                <h1>{position}</h1>
-                <p>{company}</p>
+                <h1>{jobDetails.position}</h1>
+                <p>{jobDetails.company}</p>
             </div>
         </div>
         <div className='grid gap-1 grid-cols-2 md:gap-0 p-3 text-gray-400'>
             <div className='flex flex-col gap-1'>
                 <JobItem
                     icon={faLocationDot}
-                    name={location}/>
+                    name={jobDetails.location}/>
                 <JobItem
                     icon={faBriefcase}
-                    name={type}/>
+                    name={jobDetails.jobType}/>
             </div>
             <div className=''>
                 <JobItem
@@ -61,7 +60,7 @@ function JobCard({id, position, company, status, createdAt, location, type}) {
                     name={date}/>
                 <JobItem
                     icon={icon}
-                    name={status}/>
+                    name={jobDetails.status}/>
             </div>
         </div>
         <div className='ml-2'>

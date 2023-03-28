@@ -3,14 +3,16 @@ import JobInput from '../components/JobInput'
 import Select from 'react-select'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useCreateJob from '../hooks/useCreateJob';
+import { useAppContext } from '../context';
 import {
     statusOptions,
     jobTypeOptions
 } from '../searchOptions'
 
 function AddJob() {
-    const [searchDetails, setSearchDetails] = useState({
+    const {createJob, state} = useAppContext()
+    const {editJob} = state
+    const [jobDetails, setJobDetails] = useState({
         company : '',
         position : '',
         location : '',
@@ -19,29 +21,29 @@ function AddJob() {
     })
 
     const handleSearch = (e) =>{
-        setSearchDetails(prev=>({
-            ...searchDetails,
+        setJobDetails(prev=>({
+            ...jobDetails,
             [e.target.name] : e.target.value
         }))
     }
 
     const handleStatus = (e) =>{
-        setSearchDetails(prev=>({
-            ...searchDetails,
+        setJobDetails(prev=>({
+            ...jobDetails,
             status : e.value
         }))
     }  
     const handleJobType = (e) =>{
-        setSearchDetails(prev=>({
-            ...searchDetails,
+        setJobDetails(prev=>({
+            ...jobDetails,
             jobType : e.value
         }))
     }
     
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        await useCreateJob(searchDetails)
-        setSearchDetails({
+        createJob(jobDetails)
+        setJobDetails({
             company : '',
             position : '',
             location : '',
@@ -53,22 +55,24 @@ function AddJob() {
   return (
     <form className='text-black p-10 bg-white/20 rounded-md mb-5'
     onSubmit={handleSubmit}>
-        <h1 className=' text-white text-center text-2xl md:text-3xl'>Add Job</h1>
+        <h1 className=' text-white text-center text-2xl md:text-3xl'>
+            {editJob ? 'Edit Job' : 'Add Job'}
+        </h1>
         <div className='grid grid-cols-1 gap-x-5 gap-y-4 md:grid-cols-3 md:gap-y-7 mt-5'>
             <JobInput
                 name='company'
                 handleChange={handleSearch}
-                value={ searchDetails.company }
+                value={ jobDetails.company }
                 type="text"/>
             <JobInput
                 name='position'
                 handleChange={handleSearch}
-                value={ searchDetails.position }
+                value={ jobDetails.position }
                 type="text"/>
             <JobInput
                 name='location'
                 handleChange={handleSearch}
-                value={ searchDetails.location }
+                value={ jobDetails.location }
                 type="text"/>
             <Select
                 placeholder={"Status"}
@@ -88,7 +92,7 @@ function AddJob() {
                     Submit
                 </button>
                 <button className='bg-white/30 rounded-md w-36 hover:bg-white/40
-                transition ease-out duration-300 py-2 md:py-0 text-white' onClick={()=>setSearchDetails({
+                transition ease-out duration-300 py-2 md:py-0 text-white' onClick={()=>setJobDetails({
                     company : '',
                     position : '',
                     location : '',

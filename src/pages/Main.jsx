@@ -10,9 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAppContext } from '../context';
 
 function Main() {
+  const user = localStorage.getItem('user')
   const navigate = useNavigate()
   const {state, getUser} = useAppContext()
-  const {showSideBar, currentPage, user} = state
+  const {showSideBar, currentPage} = state
 
   useEffect(()=>{
     getUser()
@@ -20,7 +21,7 @@ function Main() {
       if (!user){
         navigate('/')
       }
-    }, [1000])
+    }, [2000])
   }, [])
 
   return (

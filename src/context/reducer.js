@@ -4,7 +4,10 @@ export const initialState = {
     jobs : [],
     showLogoutButton : false,
     showSideBar : false,
-    currentPage : 'Stats'
+    currentPage : 'Stats',
+    loading : false,
+    editJob : true,
+    editJobData : {}
 }
 
 function jobsReducer(state, action) {
@@ -35,7 +38,14 @@ function jobsReducer(state, action) {
     if(action.type === "SET_CURRENT_PAGE"){
         return {
             ...state,
-            currentPage : action.page
+            currentPage : action.page,
+        }
+    }
+    if(action.type === "SET_EDIT_JOB_DATA"){
+        return {
+            ...state,
+            editJob : true,
+            editJobData : action.jobDetails
         }
     }
 }
