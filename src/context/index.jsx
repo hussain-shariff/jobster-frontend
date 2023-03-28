@@ -3,6 +3,7 @@ import jobsReducer, {initialState} from './reducer'
 import getAllJobs from "../hooks/useGetJobs"
 import deleteJob from '../hooks/useDelete'
 import useCreateJob from '../hooks/useCreateJob'
+import useEditJob from '../hooks/useEditJob'
 const jobContext = createContext()
 
 function JobsProvider({children}) {
@@ -44,7 +45,7 @@ function JobsProvider({children}) {
     const editJob = async (jobDetails) =>{
         dispatch({ type : "SET_EDIT_JOB_DATA", jobDetails})
         setcurrentPage('Add a job')
-        // await useCreateJob(jobDetails)
+        await useEditJob()
     }
 
     const values = {
