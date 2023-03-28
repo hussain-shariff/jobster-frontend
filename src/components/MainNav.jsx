@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faBars,
@@ -13,6 +13,7 @@ function MainNav() {
     const { toggleSidebar, state } = useAppContext()
     const {showSideBar, showLogoutButton} = state
     const navigate = useNavigate()
+    console.log(showLogoutButton);
 
     const handleLogOut = () =>{
         localStorage.removeItem('user')
@@ -33,9 +34,7 @@ function MainNav() {
         </div>
         <div className='relative'>
             <UserInfoBtn/>
-            {showLogoutButton && 
-            <LogoutBtn
-                handleLogOut={handleLogOut}/>}
+            {showLogoutButton && <LogoutBtn handleLogOut={handleLogOut}/>}
         </div>
     </div>
   )
