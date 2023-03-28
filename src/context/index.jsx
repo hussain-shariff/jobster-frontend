@@ -56,10 +56,20 @@ function JobsProvider({children}) {
       dispatch({ type: 'HANDLE_CHANGE', payload : {name, value} });
     };
 
-    const editJob = async () =>{
-        dispatch({ type : "SET_EDIT_JOB_DATA"})
+    const editJob = async (id) =>{
+        dispatch({ type : "SET_EDIT_JOB_DATA", id})
         setcurrentPage('Add a job')
-        // await useEditJob()
+        
+    }
+    const updateJob = async ()=>{
+      await useEditJob(
+        state.company,
+        state.position,
+        state.location,
+        state.jobType,
+        state.status,
+        state.editJobId
+      )
     }
 
 
@@ -74,7 +84,8 @@ function JobsProvider({children}) {
         deleteOneJob,
         createJob,
         editJob,
-        clearValues
+        clearValues,
+        updateJob
     }
   return (
     <jobContext.Provider value={values}>

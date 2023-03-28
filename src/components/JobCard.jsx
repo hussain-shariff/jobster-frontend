@@ -24,12 +24,6 @@ function JobCard({jobDetails}) {
     let date = moment(jobDetails.createdAt)
     date = date.format('MMM Do, YYYY')
 
-    const handleDelete = () =>{
-        deleteOneJob(jobDetails._id)
-    }
-    const handleEdit = () =>{
-        editJob(jobDetails)
-    }
 
   return (
     <div className='bg-white/20 backdrop-blur-3xl p-5 rounded-md
@@ -65,10 +59,12 @@ function JobCard({jobDetails}) {
         </div>
         <div className='ml-2'>
             <button className='border-gray-400 border-2 px-2 text-gray-400 rounded-md mr-3
-            hover:text-purple-300 hover:border-purple-300' onClick={handleEdit}>Edit</button>
+            hover:text-purple-300 hover:border-purple-300' onClick={()=> editJob(jobDetails._id)}>
+                Edit
+            </button>
             <button className='border-gray-400 border-2 px-2 text-gray-400 rounded-md
             hover:text-purple-300 hover:border-purple-300'
-            onClick={handleDelete}>Delete</button>
+            onClick={()=>deleteOneJob(jobDetails._id)}>Delete</button>
         </div>
     </div>
   )

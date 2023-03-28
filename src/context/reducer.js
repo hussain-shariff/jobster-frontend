@@ -6,7 +6,8 @@ export const initialState = {
     showSideBar : false,
     currentPage : 'Stats',
     loading : false,
-    editJob : true,
+    isEditing : false,
+    editJobId : '',
     company : '',
     position : '',
     location : '',
@@ -47,6 +48,7 @@ function jobsReducer(state, action) {
             location : '',
             jobType : 'Full-time',
             status : 'pending',
+            isEditing : false 
         }
     }
     if(action.type === "TOGGLE_LOGOUT_BUTTON"){
@@ -58,13 +60,21 @@ function jobsReducer(state, action) {
     if(action.type === "SET_CURRENT_PAGE"){
         return {
             ...state,
-            currentPage : action.page,
+            currentPage : action.page
         }
     }
     if(action.type === "SET_EDIT_JOB_DATA"){
+        const job = state.jobs.find(job=> job._id === action.id)
+        const {_id, position, company, location, jobType, status } = job;
         return {
             ...state,
-            editJob : true,
+            isEditing : true,
+            editJobId : _id,
+            position, 
+            company, 
+            location,
+            jobType, 
+            status
         }
     }
 }
