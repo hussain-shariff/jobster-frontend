@@ -14,8 +14,8 @@ function AddJob() {
         company : '',
         position : '',
         location : '',
-        jobType : '',
-        status : '',
+        jobType : 'Full-time',
+        status : 'pending',
     })
 
     const handleSearch = (e) =>{
@@ -37,36 +37,17 @@ function AddJob() {
             jobType : e.value
         }))
     }
-    const addJob = async () =>{
-        const token = localStorage.getItem('token')
-        fetch('https://jobs-api-81wf.onrender.com/api/v1/jobs', {
-            method : "POST",
-            headers : {
-                Authorization : `Bearer ${token}` 
-            },
-            body : JSON.stringify({
-                company: 'test',
-                position : 'test',
-                status : 'pending',
-                location : 'test',
-                jobType : 'internship'
-            })
-        })
-            .then(res=> res.json())
-            .then(json=> console.log(json))
-            .catch(err=> console.log(err))
-    }  
     
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        await addJob()
-        // setSearchDetails({
-        //     company : '',
-        //     position : '',
-        //     location : '',
-        //     jobType : '',
-        //     status : ''
-        // })
+        await useCreateJob(searchDetails)
+        setSearchDetails({
+            company : '',
+            position : '',
+            location : '',
+            jobType : 'Full-time',
+            status : 'pending',
+        })
     }   
 
   return (
@@ -77,28 +58,28 @@ function AddJob() {
             <JobInput
                 name='company'
                 handleChange={handleSearch}
-                value={ searchDetails.name }
+                value={ searchDetails.company }
                 type="text"/>
             <JobInput
                 name='position'
                 handleChange={handleSearch}
-                value={ searchDetails.name }
+                value={ searchDetails.position }
                 type="text"/>
             <JobInput
                 name='location'
                 handleChange={handleSearch}
-                value={ searchDetails.name }
+                value={ searchDetails.location }
                 type="text"/>
             <Select
                 placeholder={"Status"}
                 options={statusOptions}
-                isClearable={true}
+                isClearable={false}
                 isSearchable={false}
                 onChange={handleStatus} />
             <Select 
                 placeholder={"Job Type"}
                 options={jobTypeOptions}
-                isClearable={true} 
+                isClearable={false} 
                 isSearchable={false}
                 onChange={handleJobType}/>
             <div className='flex gap-5 mt-3 md:mt-0 '>

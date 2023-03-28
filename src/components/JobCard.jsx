@@ -9,8 +9,9 @@ import {
   } from '@fortawesome/free-solid-svg-icons'
 import JobItem from './JobItem'
 import moment from 'moment'
+import deleteJob from '../hooks/useDelete'
 
-function JobCard({id, position, company, status, createdAt, location, type}) {
+function JobCard({id, position, company, status, createdAt, location, type, setReRender}) {
     let icon;
     if(status.toLowerCase() === "pending"){
         icon = faClock
@@ -19,25 +20,12 @@ function JobCard({id, position, company, status, createdAt, location, type}) {
     }else{
         icon = faPaperPlane
     }
-
     let date = moment(createdAt)
     date = date.format('MMM Do, YYYY')
 
-    const deleteJob = async () =>{
-        const token = localStorage.getItem('token')
-        fetch(`https://jobs-api-81wf.onrender.com/api/v1/jobs/${id}`, {
-            method : "DELETE",
-            headers : {
-                Authorization : `Bearer ${token}` 
-            }
-        })
-            .then(res=> res.json())
-            .then(json=> console.log(json))
-            .catch(err=> console.log(err))
-    }
 
     const handleDelete = async () =>{
-        await deleteJob()
+        await deleteJob(id)
     }
 
   return (

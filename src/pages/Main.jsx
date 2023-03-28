@@ -5,6 +5,8 @@ import MainNav from '../components/MainNav';
 import Stats from './Stats';
 import AllJobs from './AllJobs';
 import AddJob from './AddJob';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Main() {
   const user = localStorage.getItem('user')
@@ -35,6 +37,7 @@ function Main() {
         <div className='px-12 md:px-20 mt-5'>
             <AddJob/>
         </div>}
+        <ToastContainer/>
     </div>
   )
 }

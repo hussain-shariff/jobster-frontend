@@ -2,24 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import JobCard from '../components/JobCard'
 import SearchJobs from '../components/SearchJobs'
+import getAllJobs from '../hooks/useGetJobs'
 
 function AllJobs() {
     const user = localStorage.getItem('user')
     const navigate = useNavigate()
     const [jobs, setjobs] = useState([])
-
-    const getAllJobs = async () =>{
-        const token = localStorage.getItem('token')
-        fetch('https://jobs-api-81wf.onrender.com/api/v1/jobs', {
-            method : "GET",
-            headers : {
-                Authorization : `Bearer ${token}` 
-            }
-        })
-            .then(res=> res.json())
-            .then(json=> setjobs(json.jobs))
-            .catch(err=> console.log(err))
-    }
 
     useEffect(()=>{
         if(!user){
@@ -27,7 +15,7 @@ function AllJobs() {
         }
         else{
             const getJobs = async () =>{
-                await getAllJobs()
+                await getAllJobs(setjobs)
             }
             getJobs()
         }

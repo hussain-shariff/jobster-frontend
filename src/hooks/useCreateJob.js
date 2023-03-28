@@ -1,29 +1,23 @@
 import { notifySuccess } from "./useNotifications"
 
-const useCreateJob = async (jobDetails, token) =>{
-    const {company, position, status, location, jobType} = jobDetails
-
-    fetch('https://jobs-api-81wf.onrender.com/api/v1/jobs', {
-        method : "POST",
-        headers : { 
-            Authorization : `Bearer ${token}`
-        },
-        body : JSON.stringify({
-            company: 'foaisf',
-            position : 'dfasfasf',
-            status : 'pending',
-            location : 'fuaisgif',
-            jobType : 'internship'
+const useCreateJob = async (jobDetails) =>{
+    const token = localStorage.getItem('token')
+    const data = {
+        company : jobDetails.company,
+        position : jobDetails.position,
+        location : jobDetails.location,
+        jobType : jobDetails.jobType,
+        status : jobDetails.status
+    }
+    const res = await fetch(`https://jobs-api-81wf.onrender.com/api/v1/jobs`, {
+            method : "POST",
+            headers : {
+                'content-type' : 'application/json',
+                Authorization : `Bearer ${token}` 
+            },
+            body : JSON.stringify(data)
         })
-    })
-        .then(res=> res.json())
-        .then(json=> {
-            // notifySuccess('Job created')
-            console.log(json);
-        })
-        .catch(err=> {
-            console.log(err);
-        })
+    notifySuccess('Job created')
 }
 
 export default useCreateJob

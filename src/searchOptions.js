@@ -1,11 +1,9 @@
 export const statusOptions = [
-    { value: 'all', label: 'All' },
     { value: 'interview', label: 'Interview' },
     { value: 'pending', label: 'Pending' },
     { value: 'declined', label: 'Declined' }
 ]
 export const jobTypeOptions = [
-    { value: 'all', label: 'All' },
     { value: 'full-time', label: 'Full-time' },
     { value: 'part-time', label: 'Part-time' },
     { value: 'remote', label: 'Remote' },
