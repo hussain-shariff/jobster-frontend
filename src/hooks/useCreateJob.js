@@ -1,13 +1,13 @@
 import { notifySuccess } from "./useNotifications"
 
-const useCreateJob = async (jobDetails) =>{
+const useCreateJob = async ( company, position, location, jobType, status) =>{
     const token = localStorage.getItem('token')
     const data = {
-        company : jobDetails.company,
-        position : jobDetails.position,
-        location : jobDetails.location,
-        jobType : jobDetails.jobType,
-        status : jobDetails.status
+        company,
+        position,
+        location,
+        jobType,
+        status 
     }
     const res = await fetch(`https://jobs-api-81wf.onrender.com/api/v1/jobs`, {
             method : "POST",

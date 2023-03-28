@@ -26,8 +26,18 @@ function JobsProvider({children}) {
       await deleteJob(id)
     }
     
-    const createJob = async (jobDetails) =>{
-      await useCreateJob(jobDetails)
+    const clearValues = () =>{
+      dispatch({ type: 'CLEAR_VALUES' });
+    }
+    
+    const createJob = async () =>{
+      await useCreateJob(
+        state.company,
+        state.position,
+        state.location,
+        state.jobType,
+        state.status
+      )
     }
 
     const toggleSidebar = () => {
@@ -41,15 +51,21 @@ function JobsProvider({children}) {
     const setcurrentPage = (page) => {
       dispatch({ type: 'SET_CURRENT_PAGE', page });
     };
+    
+    const handleChange = (name, value) => {
+      dispatch({ type: 'HANDLE_CHANGE', payload : {name, value} });
+    };
 
-    const editJob = async (jobDetails) =>{
-        dispatch({ type : "SET_EDIT_JOB_DATA", jobDetails})
+    const editJob = async () =>{
+        dispatch({ type : "SET_EDIT_JOB_DATA"})
         setcurrentPage('Add a job')
-        await useEditJob()
+        // await useEditJob()
     }
+
 
     const values = {
         state,
+        handleChange,
         getUser,
         getJobs,
         toggleSidebar,
@@ -57,7 +73,8 @@ function JobsProvider({children}) {
         toggleLogoutButton,
         deleteOneJob,
         createJob,
-        editJob
+        editJob,
+        clearValues
     }
   return (
     <jobContext.Provider value={values}>

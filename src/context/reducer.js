@@ -7,7 +7,11 @@ export const initialState = {
     currentPage : 'Stats',
     loading : false,
     editJob : true,
-    editJobData : {}
+    company : '',
+    position : '',
+    location : '',
+    jobType : 'Full-time',
+    status : 'pending',
 }
 
 function jobsReducer(state, action) {
@@ -15,6 +19,12 @@ function jobsReducer(state, action) {
         return {
             ...state,
             user : action.user
+        }
+    }
+    if(action.type === "HANDLE_CHANGE"){
+        return {
+            ...state,
+            [action.payload.name] : action.payload.value
         }
     }
     if(action.type === "GET_ALL_JOBS"){
@@ -27,6 +37,16 @@ function jobsReducer(state, action) {
         return {
             ...state,
             showSideBar : !state.showSideBar
+        }
+    }
+    if(action.type === "CLEAR_VALUES"){
+        return {
+            ...state,
+            company : '',
+            position : '',
+            location : '',
+            jobType : 'Full-time',
+            status : 'pending',
         }
     }
     if(action.type === "TOGGLE_LOGOUT_BUTTON"){
@@ -45,7 +65,6 @@ function jobsReducer(state, action) {
         return {
             ...state,
             editJob : true,
-            editJobData : action.jobDetails
         }
     }
 }

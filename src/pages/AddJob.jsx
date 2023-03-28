@@ -10,46 +10,26 @@ import {
 } from '../searchOptions'
 
 function AddJob() {
-    const {createJob, state} = useAppContext()
-    const {editJob} = state
-    const [jobDetails, setJobDetails] = useState({
-        company : '',
-        position : '',
-        location : '',
-        jobType : 'Full-time',
-        status : 'pending',
-    })
+    const {createJob, state, handleChange, clearValues} = useAppContext()
+    const {editJob, position, company, location, jobType, status} = state
 
     const handleSearch = (e) =>{
-        setJobDetails(prev=>({
-            ...jobDetails,
-            [e.target.name] : e.target.value
-        }))
+        const name = e.target.name
+        const value = e.target.value
+        handleChange(name, value)
     }
 
     const handleStatus = (e) =>{
-        setJobDetails(prev=>({
-            ...jobDetails,
-            status : e.value
-        }))
+        handleChange('status', e.value)
     }  
     const handleJobType = (e) =>{
-        setJobDetails(prev=>({
-            ...jobDetails,
-            jobType : e.value
-        }))
+        handleChange('jobType', e.value)
     }
     
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        createJob(jobDetails)
-        setJobDetails({
-            company : '',
-            position : '',
-            location : '',
-            jobType : 'Full-time',
-            status : 'pending',
-        })
+        createJob()
+        clearValues()
     }   
 
   return (
@@ -62,17 +42,17 @@ function AddJob() {
             <JobInput
                 name='company'
                 handleChange={handleSearch}
-                value={ jobDetails.company }
+                value={ company }
                 type="text"/>
             <JobInput
                 name='position'
                 handleChange={handleSearch}
-                value={ jobDetails.position }
+                value={ position}
                 type="text"/>
             <JobInput
                 name='location'
                 handleChange={handleSearch}
-                value={ jobDetails.location }
+                value={ location }
                 type="text"/>
             <Select
                 placeholder={"Status"}
