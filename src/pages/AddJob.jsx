@@ -88,7 +88,13 @@ function AddJob() {
                     Submit
                 </button>
                 <button className='bg-white/30 rounded-md w-36 hover:bg-white/40
-                transition ease-out duration-300 py-2 md:py-0 text-white'>
+                transition ease-out duration-300 py-2 md:py-0 text-white' onClick={()=>setSearchDetails({
+                    company : '',
+                    position : '',
+                    location : '',
+                    jobType : 'Full-time',
+                    status : 'pending',
+                })}>
                     Clear
                 </button>
             </div>

@@ -7,8 +7,10 @@ import Logo from './Logo'
 import UserInfoBtn from './UserInfoBtn'
 import LogoutBtn from './LogoutBtn'
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../context'
 
 function MainNav({user, showSideBar ,setshowSideBar}) {
+    const {toggleSidebar} = useAppContext()
     const [showLogOutBtn, setshowLogOutBtn] = useState(false)
     const navigate = useNavigate()
 

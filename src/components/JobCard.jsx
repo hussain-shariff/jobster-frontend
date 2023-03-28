@@ -11,7 +11,7 @@ import JobItem from './JobItem'
 import moment from 'moment'
 import deleteJob from '../hooks/useDelete'
 
-function JobCard({id, position, company, status, createdAt, location, type, setReRender}) {
+function JobCard({id, position, company, status, createdAt, location, type, setcurrentPage}) {
     let icon;
     if(status.toLowerCase() === "pending"){
         icon = faClock
@@ -26,6 +26,9 @@ function JobCard({id, position, company, status, createdAt, location, type, setR
 
     const handleDelete = async () =>{
         await deleteJob(id)
+    }
+    const handleEdit = () =>{
+        setcurrentPage('Add a job')
     }
 
   return (
@@ -62,7 +65,7 @@ function JobCard({id, position, company, status, createdAt, location, type, setR
         </div>
         <div className='ml-2'>
             <button className='border-gray-400 border-2 px-2 text-gray-400 rounded-md mr-3
-            hover:text-purple-300 hover:border-purple-300'>Edit</button>
+            hover:text-purple-300 hover:border-purple-300' onClick={handleEdit}>Edit</button>
             <button className='border-gray-400 border-2 px-2 text-gray-400 rounded-md
             hover:text-purple-300 hover:border-purple-300'
             onClick={handleDelete}>Delete</button>

@@ -32,7 +32,7 @@ function Main() {
           setshowSideBar={setshowSideBar}
           setcurrentPage = {setcurrentPage}/>}
         {currentPage === 'Stats' && <Stats/>}
-        {currentPage === 'All jobs' && <AllJobs/>}
+        {currentPage === 'All jobs' && <AllJobs setcurrentPage={setcurrentPage}/>}
         {currentPage === 'Add a job' && 
         <div className='px-12 md:px-20 mt-5'>
             <AddJob/>

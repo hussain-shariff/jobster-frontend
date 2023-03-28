@@ -1,14 +1,18 @@
-const getAllJobs = async (setjobs) =>{
+
+const getAllJobs = async () =>{
     const token = localStorage.getItem('token')
-    fetch('https://jobs-api-81wf.onrender.com/api/v1/jobs', {
-        method : "GET",
-        headers : {
-            Authorization : `Bearer ${token}` 
-        }
-    })
-        .then(res=> res.json())
-        .then(json=> setjobs(json.jobs))
-        .catch(err=> console.log(err))
+    try {
+        const res = await fetch('https://jobs-api-81wf.onrender.com/api/v1/jobs', {
+            method : "GET",
+            headers : {
+                Authorization : `Bearer ${token}` 
+            }
+        })
+        const data = await res.json()
+        return data.jobs
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export default getAllJobs
