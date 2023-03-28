@@ -9,9 +9,10 @@ import {
   } from '@fortawesome/free-solid-svg-icons'
 import JobItem from './JobItem'
 import moment from 'moment'
-import deleteJob from '../hooks/useDelete'
+import { useAppContext } from '../context';
 
-function JobCard({id, position, company, status, createdAt, location, type, setcurrentPage}) {
+function JobCard({id, position, company, status, createdAt, location, type}) {
+    const {setcurrentPage, deleteOneJob} = useAppContext()
     let icon;
     if(status.toLowerCase() === "pending"){
         icon = faClock
@@ -24,8 +25,8 @@ function JobCard({id, position, company, status, createdAt, location, type, setc
     date = date.format('MMM Do, YYYY')
 
 
-    const handleDelete = async () =>{
-        await deleteJob(id)
+    const handleDelete = () =>{
+        deleteOneJob(id)
     }
     const handleEdit = () =>{
         setcurrentPage('Add a job')

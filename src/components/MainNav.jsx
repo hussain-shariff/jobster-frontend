@@ -9,9 +9,9 @@ import LogoutBtn from './LogoutBtn'
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context'
 
-function MainNav({user, showSideBar ,setshowSideBar}) {
-    const {toggleSidebar} = useAppContext()
-    const [showLogOutBtn, setshowLogOutBtn] = useState(false)
+function MainNav() {
+    const { toggleSidebar, state } = useAppContext()
+    const {showSideBar, showLogoutButton} = state
     const navigate = useNavigate()
 
     const handleLogOut = () =>{
@@ -25,15 +25,15 @@ function MainNav({user, showSideBar ,setshowSideBar}) {
     justify-between px-10 py-5 md:px-20'>
         <div>
             {!showSideBar && <div className='flex gap-3 items-center'>
-                <FontAwesomeIcon onClick={()=> setshowSideBar(!showSideBar)} icon={faBars} className='h-6 cursor-pointer'/>
+                <FontAwesomeIcon onClick={()=> {
+                    toggleSidebar()
+                }} icon={faBars} className='h-6 cursor-pointer'/>
             <Logo/>
         </div>}
         </div>
         <div className='relative'>
-            <UserInfoBtn
-                setshowLogOutBtn={setshowLogOutBtn}
-                user={user}/>
-            {showLogOutBtn && 
+            <UserInfoBtn/>
+            {showLogoutButton && 
             <LogoutBtn
                 handleLogOut={handleLogOut}/>}
         </div>

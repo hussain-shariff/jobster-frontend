@@ -2,14 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import JobCard from '../components/JobCard'
 import SearchJobs from '../components/SearchJobs'
-import getAllJobs from '../hooks/useGetJobs'
 import { useAppContext } from '../context'
 
-function AllJobs({setcurrentPage}) {
+function AllJobs() {
     const { getJobs, state } = useAppContext()
-    const user = localStorage.getItem('user')
     const navigate = useNavigate()
-    const {jobs} = state
+    const {jobs, user} = state
     useEffect(()=>{
         if(!user){
             navigate('/')
@@ -35,7 +33,6 @@ function AllJobs({setcurrentPage}) {
                         status ={job.status}
                         location={job.location}
                         type={job.jobType}
-                        setcurrentPage={setcurrentPage}
                         />
                 ))
             }

@@ -7,32 +7,28 @@ import AllJobs from './AllJobs';
 import AddJob from './AddJob';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAppContext } from '../context';
 
 function Main() {
-  const user = localStorage.getItem('user')
   const navigate = useNavigate()
-  const [currentPage, setcurrentPage] = useState('Stats')
-  const [showSideBar, setshowSideBar] = useState(false)
+  const {state, getUser} = useAppContext()
+  const {showSideBar, currentPage, user} = state
 
   useEffect(()=>{
-    if (!user){
-      console.log('no user');
-      navigate('/')
-    }
+    getUser()
+    setTimeout(()=>{
+      if (!user){
+        navigate('/')
+      }
+    }, [1000])
   }, [])
 
   return (
     <div className='bg-gradient-to-l min-h-screen from-[#130e3e] to-[#030209]'>
-        <MainNav
-          showSideBar={showSideBar}
-          setshowSideBar={setshowSideBar}
-          user={user}/>
-        {showSideBar && 
-        <SideBar
-          setshowSideBar={setshowSideBar}
-          setcurrentPage = {setcurrentPage}/>}
+        <MainNav/>
+        {showSideBar && <SideBar/>}
         {currentPage === 'Stats' && <Stats/>}
-        {currentPage === 'All jobs' && <AllJobs setcurrentPage={setcurrentPage}/>}
+        {currentPage === 'All jobs' && <AllJobs/>}
         {currentPage === 'Add a job' && 
         <div className='px-12 md:px-20 mt-5'>
             <AddJob/>
