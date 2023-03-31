@@ -1,6 +1,8 @@
 
 export const initialState = {
     user : '',
+    lastname : '',
+    userLocation : "",
     jobs : [],
     showLogoutButton : false,
     showSideBar : false,

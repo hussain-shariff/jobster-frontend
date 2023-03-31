@@ -4,6 +4,7 @@ import getAllJobs from "../hooks/useGetJobs"
 import deleteJob from '../hooks/useDelete'
 import useCreateJob from '../hooks/useCreateJob'
 import useEditJob from '../hooks/useEditJob'
+import useUpdateUser from '../hooks/useUpdateUser'
 const jobContext = createContext()
 
 function JobsProvider({children}) {
@@ -71,6 +72,13 @@ function JobsProvider({children}) {
         state.editJobId
       )
     }
+    const updateUser = async ()=>{
+      await useUpdateUser(
+        state.user,
+        state.lastname,
+        state.userLocation
+      )
+    }
 
 
     const values = {
@@ -85,7 +93,8 @@ function JobsProvider({children}) {
         createJob,
         editJob,
         clearValues,
-        updateJob
+        updateJob,
+        updateUser
     }
   return (
     <jobContext.Provider value={values}>

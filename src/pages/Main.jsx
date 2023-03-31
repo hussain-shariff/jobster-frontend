@@ -8,7 +8,7 @@ import AddJob from './AddJob';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppContext } from '../context';
-import Profile from './profile';
+import UserProfile from './UserProfile';
 
 function Main() {
   const user = localStorage.getItem('user')
@@ -31,11 +31,10 @@ function Main() {
         {showSideBar && <SideBar/>}
         {currentPage === 'Stats' && <Stats/>}
         {currentPage === 'All jobs' && <AllJobs/>}
-        {currentPage === 'Profile' && <Profile/>}
-        {currentPage === 'Add a job' && 
         <div className='px-12 md:px-20 mt-5'>
-            <AddJob/>
-        </div>}
+            {currentPage === 'Add a job' && <AddJob/>}
+            {currentPage === 'Profile' && <UserProfile/>}
+        </div>
         <ToastContainer/>
     </div>
   )
