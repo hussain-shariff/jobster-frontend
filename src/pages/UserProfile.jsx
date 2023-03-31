@@ -4,7 +4,7 @@ import { useAppContext } from '../context';
 
 function UserProfile() {
     const {state, handleChange, updateUser, clearValues} = useAppContext()
-    const {user, lastname, userLocation} = state
+    const {user, lastname, userLocation, updatedUser} = state
 
     const handleSearch = (e) =>{
         const name = e.target.name
@@ -19,9 +19,9 @@ function UserProfile() {
   return (
     <form className='grid grid-cols-1 md:grid-cols-3 gap-3 bg-white/20 p-10' onSubmit={handleSubmit}>
         <JobInput
-            name='user'
+            name='updatedUser'
             handleChange={handleSearch}
-            value={ user }
+            value={ updatedUser }
             type="text"/>
         <JobInput
             name='lastname'

@@ -75,10 +75,11 @@ function JobsProvider({children}) {
     }
     const updateUser = async ()=>{
       await useUpdateUser(
-        state.user,
+        state.updatedUser,
         state.lastname,
         state.userLocation
       )
+      dispatch({ type : "UPDATE_USER_SUCCESSFULL"})
     }
 
 

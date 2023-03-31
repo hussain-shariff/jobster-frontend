@@ -3,9 +3,9 @@ import { notifySuccess } from "./useNotifications"
 const useUpdateUser = async (username, lastname, location) =>{
     const token = localStorage.getItem('token')
     const data = {
-        username : "hussain",
-        lastname : "shariff",
-        location : 'mysore'
+        username ,
+        lastname ,
+        location
     }
     const res = await fetch(`https://jobs-api-81wf.onrender.com/api/v1/jobs`, {
             method : "PATCH",

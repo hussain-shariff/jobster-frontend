@@ -1,6 +1,7 @@
 
 export const initialState = {
     user : '',
+    updatedUser : '',
     lastname : '',
     userLocation : "",
     jobs : [],
@@ -23,6 +24,7 @@ function jobsReducer(state, action) {
         return {
             ...state,
             user : username,
+            updatedUser : username,
             lastname,
             userLocation : location
         }
@@ -66,6 +68,12 @@ function jobsReducer(state, action) {
         return {
             ...state,
             currentPage : action.page
+        }
+    }
+    if(action.type === "UPDATE_USER_SUCCESSFULL"){
+        return {
+            ...state,
+            user : state.updatedUser
         }
     }
     if(action.type === "SET_EDIT_JOB_DATA"){
