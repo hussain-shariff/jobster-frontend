@@ -12,6 +12,17 @@ import {
 function AddJob() {
     const {createJob, updateJob, state, handleChange, clearValues} = useAppContext()
     const {isEditing, position, company, location, jobType, status} = state
+    const selectStyles = {
+        control : (baseStyles, state) => ({
+            ...baseStyles,
+            backgroundColor : "rgb(255 255 255 / 0.2)",
+            borderColor : "rgb(255 255 255 / 0.00001)"
+        }),
+        placeholder : (baseStyles, state) => ({
+            ...baseStyles,
+            color : "rgb(255 255 255 / 0.5)"
+        })
+    }
 
     const handleSearch = (e) =>{
         const name = e.target.name
@@ -64,13 +75,15 @@ function AddJob() {
                 options={statusOptions}
                 isClearable={false}
                 isSearchable={false}
-                onChange={handleStatus} />
+                onChange={handleStatus}
+                styles={selectStyles} />
             <Select 
                 placeholder={"Job Type"}
                 options={jobTypeOptions}
                 isClearable={false} 
                 isSearchable={false}
-                onChange={handleJobType}/>
+                onChange={handleJobType}
+                styles={selectStyles}/>
             <div className='flex gap-5 mt-3 md:mt-0 '>
                 <button type='submit' className='bg-white/30 rounded-md w-36 hover:bg-white/40
                 transition ease-out duration-300 py-2 md:py-0 text-white'>

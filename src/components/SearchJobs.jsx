@@ -8,6 +8,17 @@ import {
 } from '../searchOptions'
 
 function SearchJobs() {
+    const selectStyles = {
+        control : (baseStyles, state) => ({
+            ...baseStyles,
+            backgroundColor : "rgb(255 255 255 / 0.2)",
+            borderColor : "rgb(255 255 255 / 0.00001)"
+        }),
+        placeholder : (baseStyles, state) => ({
+            ...baseStyles,
+            color : "rgb(255 255 255 / 0.5)"
+        })
+    }
     const [searchDetails, setSearchDetails] = useState({
         Search : '',
         status : '',
@@ -36,23 +47,26 @@ function SearchJobs() {
                 value={ searchDetails.name }
                 type="text"/>
             <Select 
-                placeholder={'status'}
+                placeholder={'Status'}
                 options={statusOptions}
                 isClearable={true}
                 isSearchable={false}
-                onChange={handleChange} />
+                onChange={handleChange}
+                styles={selectStyles} />
             <Select
                 placeholder={"type"}
                 options={jobTypeOptions}
                 isClearable={true}
                 isSearchable={false}
-                onChange={handleChange} />
+                onChange={handleChange}
+                styles={selectStyles} />
             <Select 
                 placeholder={"sort"}
                 options={sortOptions}
                 isClearable={true} 
                 isSearchable={false}
-                onChange={handleChange}/>
+                onChange={handleChange}
+                styles={selectStyles}/>
             <button className='bg-white/30 rounded-md w-36 hover:bg-white/40
             transition ease-out duration-300 py-2 md:py-0 text-white'>
                 Clear filters

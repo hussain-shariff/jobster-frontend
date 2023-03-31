@@ -17,7 +17,7 @@ function UserProfile() {
     }
 
   return (
-    <div className='bg-white/20 p-10 rounded-md'>
+    <div className='p-10 rounded-md'>
         <h1 className='text-center text-3xl text-white mb-3'>Profile</h1>
         <form className='grid grid-cols-1 md:grid-cols-3 gap-3 ' onSubmit={handleSubmit}>
             <JobInput
@@ -35,7 +35,7 @@ function UserProfile() {
                 handleChange={handleSearch}
                 value={ userLocation }
                 type="text"/>
-            <button type='submit' className='bg-white/30  rounded-md w-36 hover:bg-white/40
+            <button type='submit' className='bg-white/30 mt-3  rounded-sm w-36 hover:bg-white/40
                 transition ease-out duration-300 py-1 text-white'>
                 Save Changes
             </button>
