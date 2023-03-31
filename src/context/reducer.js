@@ -70,6 +70,13 @@ function jobsReducer(state, action) {
             currentPage : action.page
         }
     }
+    if(action.type === "DELETE_JOB"){
+        const updatedJobs = state.jobs.filter(job=> job._id !== action.id)
+        return {
+            ...state,
+            jobs : updatedJobs
+        }
+    }
     if(action.type === "UPDATE_USER_SUCCESSFULL"){
         return {
             ...state,

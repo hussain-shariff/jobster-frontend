@@ -26,6 +26,7 @@ function JobsProvider({children}) {
     
     const deleteOneJob = async (id) =>{
       await deleteJob(id)
+      dispatch({ type : "DELETE_JOB", id})
     }
     
     const clearValues = () =>{
