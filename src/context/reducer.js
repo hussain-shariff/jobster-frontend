@@ -19,9 +19,12 @@ export const initialState = {
 
 function jobsReducer(state, action) {
     if(action.type === "SET_USER"){
+        const {username, lastname, location } = action.userData
         return {
             ...state,
-            user : action.user
+            user : username,
+            lastname,
+            userLocation : location
         }
     }
     if(action.type === "HANDLE_CHANGE"){
