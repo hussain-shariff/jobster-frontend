@@ -1,6 +1,7 @@
 import React, {createContext, useState, useContext, useReducer } from 'react'
 import jobsReducer, {initialState} from './reducer'
-import getAllJobs from "../hooks/useGetJobs"
+import stats from "../hooks/useGetJobs"
+import filterJobs from '../hooks/useFilterJobs'
 import deleteJob from '../hooks/useDelete'
 import useCreateJob from '../hooks/useCreateJob'
 import useEditJob from '../hooks/useEditJob'
@@ -16,8 +17,13 @@ function JobsProvider({children}) {
       dispatch({type : "SET_USER", userData})
     }
     
+    const getStats = async () =>{
+      const statsData = await stats()
+      dispatch({type : "GET_STATS", statsData})
+    }
+    
     const getJobs = async () =>{
-      const allJobs = await getAllJobs(
+      const allJobs = await filterJobs(
         state.filterStatus,
         state.filterJobType,
         state.search,
@@ -106,7 +112,8 @@ function JobsProvider({children}) {
         clearValues,
         updateJob,
         updateUser,
-        setLoading
+        setLoading,
+        getStats
     }
   return (
     <jobContext.Provider value={values}>

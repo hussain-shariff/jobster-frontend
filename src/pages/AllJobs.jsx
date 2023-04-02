@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import JobCard from '../components/JobCard'
 import SearchJobs from '../components/SearchJobs'
 import { useAppContext } from '../context'
 
 function AllJobs() {
-    const { state } = useAppContext()
-    const {jobs} = state
+    const { state, getJobs } = useAppContext()
+    const {jobs, isLoading} = state
+
+    useEffect(()=>{
+        getJobs()
+    }, [isLoading])
 
   return (
     <div className='mt-4 px-10 mx-auto md:px-20'>

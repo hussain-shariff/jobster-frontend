@@ -11,12 +11,13 @@ import { useAppContext } from '../context'
 
 function Stats() {
   const [showBarChart, setshowBarChart] = useState(true)
-  const { getJobs, state } = useAppContext()
-  const {isLoading, pending, declined, interview} = state
+  const { state, getStats } = useAppContext()
+  const {pending, declined, interview} = state
 
   useEffect(()=>{
-    getJobs()
-  }, [isLoading])
+    getStats()
+  }, [])
+  
 
   return (
     <div>

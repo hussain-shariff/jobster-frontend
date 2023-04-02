@@ -23,7 +23,8 @@ export const initialState = {
     isLoading: false,
     pending : 0,
     interview : 0,
-    declined : 0
+    declined : 0,
+    stats : []
 }
 
 function jobsReducer(state, action) {
@@ -63,6 +64,25 @@ function jobsReducer(state, action) {
         return {
             ...state,
             jobs : action.jobs,
+            pending,
+            declined,
+            interview
+        }
+    }
+    if(action.type === "GET_STATS"){
+        let pending = 0, declined = 0, interview = 0
+        action.statsData.forEach(job=>{
+            if (job.status === 'pending'){
+                pending++
+            }else if(job.jobType === 'interview'){
+                interview++
+            }else{
+                declined++
+            }
+        })
+        return {
+            ...state,
+            stats : action.statsData,
             pending,
             declined,
             interview
