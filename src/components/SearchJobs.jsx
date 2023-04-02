@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import JobInput from './JobInput'
 import Select from 'react-select'
 import {
@@ -6,8 +6,11 @@ import {
     sortOptions,
     jobTypeOptions
 } from '../searchOptions'
+import { useAppContext } from '../context';
 
 function SearchJobs() {
+    const {state, handleChange, clearValues} = useAppContext()
+    const {search} = state
     const selectStyles = {
         control : (baseStyles, state) => ({
             ...baseStyles,
@@ -19,21 +22,14 @@ function SearchJobs() {
             color : "rgb(255 255 255 / 0.5)"
         })
     }
-    const [searchDetails, setSearchDetails] = useState({
-        Search : '',
-        status : '',
-        type : '',
-        sort : ''
-    })
 
     const handleSearch = (e) =>{
-        setSearchDetails(prev=>({
-            ...searchDetails,
-            [e.target.name] : e.target.value
-        }))
+        const name = e.target.name
+        const value = e.target.value
+        handleChange(name, value)
     }
 
-    const handleChange = (e) =>{
+    const handleFilters = (e) =>{
         console.log(e)
     }   
 
@@ -42,33 +38,33 @@ function SearchJobs() {
         <h1 className=' text-white text-center text-2xl md:text-3xl'>Search Form</h1>
         <div className='grid grid-cols-1 gap-x-5 gap-y-2 md:grid-cols-3 md:gap-y-3 mt-5'>
             <JobInput
-                name='Search'
+                name='search'
                 handleChange={handleSearch}
-                value={ searchDetails.name }
+                value={ search }
                 type="text"/>
             <Select 
                 placeholder={'Status'}
                 options={statusOptions}
                 isClearable={false}
                 isSearchable={false}
-                onChange={handleChange}
+                onChange={handleFilters}
                 styles={selectStyles} />
             <Select
                 placeholder={"type"}
                 options={jobTypeOptions}
                 isClearable={false}
                 isSearchable={false}
-                onChange={handleChange}
+                onChange={handleFilters}
                 styles={selectStyles} />
             <Select 
                 placeholder={"sort"}
                 options={sortOptions}
                 isClearable={false} 
                 isSearchable={false}
-                onChange={handleChange}
+                onChange={handleFilters}
                 styles={selectStyles}/>
             <button className='bg-white/30 rounded-md w-36 hover:bg-white/40
-            transition ease-out duration-300 py-2 md:py-0 text-white'>
+            transition ease-out duration-300 py-2 md:py-0 text-white' onClick={()=> clearValues()}>
                 Clear filters
             </button>
         </div>

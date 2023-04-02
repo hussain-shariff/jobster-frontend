@@ -14,8 +14,12 @@ export const initialState = {
     company : '',
     position : '',
     location : '',
-    jobType : 'Full-time',
+    jobType : 'full-time',
+    filterJobType : 'all',
     status : 'pending',
+    filterStatus : 'all',
+    search : '',
+    sort : 'latest'
 }
 
 function jobsReducer(state, action) {
@@ -53,9 +57,13 @@ function jobsReducer(state, action) {
             company : '',
             position : '',
             location : '',
-            jobType : 'Full-time',
+            jobType : 'full-time',
+            filterJobType : 'all',
             status : 'pending',
-            isEditing : false 
+            filterStatus : 'all',
+            isEditing : false,
+            search : '',
+            sort : 'latest' 
         }
     }
     if(action.type === "TOGGLE_LOGOUT_BUTTON"){

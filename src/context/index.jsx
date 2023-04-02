@@ -17,7 +17,12 @@ function JobsProvider({children}) {
     }
     
     const getJobs = async () =>{
-      const allJobs = await getAllJobs()
+      const allJobs = await getAllJobs(
+        state.filterStatus,
+        state.filterJobType,
+        state.search,
+        state.sort
+      )
       dispatch({
         type : "GET_ALL_JOBS",
         jobs : allJobs

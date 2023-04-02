@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import JobCard from '../components/JobCard'
 import SearchJobs from '../components/SearchJobs'
 import { useAppContext } from '../context'
