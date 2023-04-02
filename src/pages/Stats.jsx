@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import StatsCard from '../components/StatsCard'
 import {
     faSuitcaseRolling,
@@ -7,27 +7,35 @@ import {
     } from '@fortawesome/free-solid-svg-icons'
 import BarChartComp from '../components/BarChartComp'
 import AreaChartComp from '../components/AreaChartComp'
+import { useAppContext } from '../context'
 
 function Stats() {
   const [showBarChart, setshowBarChart] = useState(true)
+  const { getJobs, state } = useAppContext()
+  const {isLoading, pending, declined, interview} = state
+
+  useEffect(()=>{
+    getJobs()
+  }, [isLoading])
+
   return (
     <div>
       <div className='grid grid-cols-1 gap-6 px-6 md:grid-cols-3 md:px-10 my-3'>
           <StatsCard
           color="blue"
           icon={faSuitcaseRolling}
-          number={24}
+          number={pending}
           stat='Pending Applications'
           />
           <StatsCard
           color="red"
           icon={faCalendarDays}
-          number={27}
+          number={interview}
           stat='Interviews Scheduled'/>
           <StatsCard
           color="purple"
           icon={faBug}
-          number={30}
+          number={declined}
           stat='Jobs Declined'/>
       </div>
       <div className='mx-auto mt-7 flex flex-col items-center'>

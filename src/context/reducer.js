@@ -19,7 +19,11 @@ export const initialState = {
     status : 'pending',
     filterStatus : 'all',
     search : '',
-    sort : 'latest'
+    sort : 'latest',
+    isLoading: false,
+    pending : 0,
+    interview : 0,
+    declined : 0
 }
 
 function jobsReducer(state, action) {
@@ -39,10 +43,29 @@ function jobsReducer(state, action) {
             [action.payload.name] : action.payload.value
         }
     }
-    if(action.type === "GET_ALL_JOBS"){
+    if(action.type === "SET_LOADING"){
         return {
             ...state,
-            jobs : action.jobs
+            isLoading : !state.isLoading
+        }
+    }
+    if(action.type === "GET_ALL_JOBS"){
+        let pending = 0, declined = 0, interview = 0
+        action.jobs.forEach(job=>{
+            if (job.status === 'pending'){
+                pending++
+            }else if(job.jobType === 'interview'){
+                interview++
+            }else{
+                declined++
+            }
+        })
+        return {
+            ...state,
+            jobs : action.jobs,
+            pending,
+            declined,
+            interview
         }
     }
     if(action.type === "TOGGLE_SIDEBAR"){

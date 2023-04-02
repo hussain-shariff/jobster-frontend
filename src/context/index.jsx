@@ -37,6 +37,9 @@ function JobsProvider({children}) {
     const clearValues = () =>{
       dispatch({ type: 'CLEAR_VALUES' });
     }
+    const setLoading = () =>{
+      dispatch({ type: 'SET_LOADING' });
+    }
     
     const createJob = async () =>{
       await useCreateJob(
@@ -44,7 +47,7 @@ function JobsProvider({children}) {
         state.position,
         state.location,
         state.jobType,
-        state.status
+        state.status,
       )
     }
 
@@ -102,7 +105,8 @@ function JobsProvider({children}) {
         editJob,
         clearValues,
         updateJob,
-        updateUser
+        updateUser,
+        setLoading
     }
   return (
     <jobContext.Provider value={values}>

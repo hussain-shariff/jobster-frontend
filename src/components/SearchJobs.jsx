@@ -9,7 +9,7 @@ import {
 import { useAppContext } from '../context';
 
 function SearchJobs() {
-    const {state, handleChange, clearValues} = useAppContext()
+    const {state, handleChange, clearValues, setLoading} = useAppContext()
     const {search} = state
     const selectStyles = {
         control : (baseStyles, state) => ({
@@ -27,10 +27,20 @@ function SearchJobs() {
         const name = e.target.name
         const value = e.target.value
         handleChange(name, value)
+        setLoading()
     }
 
-    const handleFilters = (e) =>{
-        console.log(e)
+    const handleStatus = (e) =>{
+        handleChange('filterStatus', e.value)
+        setLoading()
+    }   
+    const handleJobType = (e) =>{
+        handleChange('filterJobType', e.value)
+        setLoading()
+    }   
+    const handleSort = (e) =>{
+        handleChange('sort', e.value)
+        setLoading()
     }   
 
   return (
@@ -47,24 +57,26 @@ function SearchJobs() {
                 options={statusOptions}
                 isClearable={false}
                 isSearchable={false}
-                onChange={handleFilters}
+                onChange={handleStatus}
                 styles={selectStyles} />
             <Select
                 placeholder={"type"}
                 options={jobTypeOptions}
                 isClearable={false}
                 isSearchable={false}
-                onChange={handleFilters}
+                onChange={handleJobType}
                 styles={selectStyles} />
             <Select 
                 placeholder={"sort"}
                 options={sortOptions}
                 isClearable={false} 
                 isSearchable={false}
-                onChange={handleFilters}
+                onChange={handleSort}
                 styles={selectStyles}/>
             <button className='bg-white/30 rounded-md w-36 hover:bg-white/40
-            transition ease-out duration-300 py-2 md:py-0 text-white' onClick={()=> clearValues()}>
+            transition ease-out duration-300 py-2 md:py-0 text-white' onClick={()=> {
+                clearValues() 
+                setLoading()}}>
                 Clear filters
             </button>
         </div>
