@@ -49,21 +49,21 @@ function SearchJobs() {
             <Select 
                 placeholder={'Status'}
                 options={statusOptions}
-                isClearable={true}
+                isClearable={false}
                 isSearchable={false}
                 onChange={handleChange}
                 styles={selectStyles} />
             <Select
                 placeholder={"type"}
                 options={jobTypeOptions}
-                isClearable={true}
+                isClearable={false}
                 isSearchable={false}
                 onChange={handleChange}
                 styles={selectStyles} />
             <Select 
                 placeholder={"sort"}
                 options={sortOptions}
-                isClearable={true} 
+                isClearable={false} 
                 isSearchable={false}
                 onChange={handleChange}
                 styles={selectStyles}/>
