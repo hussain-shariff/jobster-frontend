@@ -9,7 +9,7 @@ const stats = async () =>{
             }
         })
         const data = await res.json()
-        return data.jobs
+        return data
     } catch (error) {
         console.log(error);
     }

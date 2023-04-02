@@ -24,7 +24,8 @@ export const initialState = {
     pending : 0,
     interview : 0,
     declined : 0,
-    stats : []
+    stats : [],
+    monthlyApplications : []
 }
 
 function jobsReducer(state, action) {
@@ -71,7 +72,7 @@ function jobsReducer(state, action) {
     }
     if(action.type === "GET_STATS"){
         let pending = 0, declined = 0, interview = 0
-        action.statsData.forEach(job=>{
+        action.payload.jobs.forEach(job=>{
             if (job.status === 'pending'){
                 pending++
             }else if(job.jobType === 'interview'){
@@ -82,7 +83,8 @@ function jobsReducer(state, action) {
         })
         return {
             ...state,
-            stats : action.statsData,
+            stats : action.payload.jobs,
+            monthlyApplications : action.payload.monthlyApplications,
             pending,
             declined,
             interview
