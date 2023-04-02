@@ -34,10 +34,10 @@ function Register() {
     }
 
   return (
-    <form className='h-screen bg-gradient-to-bl from-[#120e3e]  to-[#000000]
-    flex items-center justify-center' onSubmit={handleSubmit}>
-        <div className=' text-white flex flex-col gap-4 bg-white/20 backdrop-blur-3xl p-10 rounded-xl'>
-            <h1 className='text-center font-semibol text-3xl'>Sign up for Jobster</h1>
+    <form className='h-screen relative bg-[#070417]' onSubmit={handleSubmit}>
+        <div className=' text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-4
+            flex flex-col bg-white/30 z-30 backdrop-blur-3xl p-10 rounded-md'>
+            <h1 className='text-center font-semibol text-3xl z-40'>Sign up for Jobster</h1>
             <InputForm 
                 name="Username"
                 type="text"
@@ -57,8 +57,8 @@ function Register() {
                 value = {formData.Password}
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button className='bg-gradient-to-r from-green-200  to-pink-200 py-2 px-10 rounded-md 
-            font-semibold hover:scale-105 transition ease-out duration-500 w-full text-black'
+            <button className='bg-white py-1 px-10 rounded-md 
+            font-semibold hover:scale-105 transition ease-out duration-500 w-full text-[#070417]'
             type='submit'>
                 Complete Sign Up
                 <ClipLoader
@@ -76,6 +76,7 @@ function Register() {
             </p>
         </div>
         <ToastContainer/>
+        <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-72 h-72 bg-[#224668] blur-3xl"></div>
     </form>
   )
 }

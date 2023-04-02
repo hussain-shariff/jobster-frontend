@@ -8,10 +8,11 @@ function InputForm({ name, type, value, autoComplete, setformData}) {
             }))
     }
   return (
-    <div>
-        <input required name={name} id={name} value={value} type={type} className='mt-2 p-2 bg-inherit border-2
-        rounded-md w-full focus:outline-none border-white focus:border-blue-600' placeholder={ name }
+    <div className='relative'>
+        <input required name={name} id={name} value={value} type={type} className='mt-1 py-1 px-2 bg-white/0
+        rounded-sm text-white w-full focus:outline-none' placeholder={ name }
         autoComplete={ autoComplete } onChange={handleChange} />
+        <div className='absolute w-full bg-white h-[1.5px]'></div>
     </div>
   )
 }
