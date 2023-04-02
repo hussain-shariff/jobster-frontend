@@ -11,14 +11,17 @@ import {
     ResponsiveContainer 
     } from 'recharts';
 import data from '../data';
+import { useAppContext } from '../context';
 
 const BarChartComp = () => {
+    const {state} = useAppContext()
+    const {monthlyApplications} = state
     return (
       <ResponsiveContainer max-width="75%" height={300}>
         <BarChart
           width={500}
           height={300}
-          data={data}
+          data={monthlyApplications}
           margin={{
             top: 10,
             left : -10,
@@ -26,7 +29,7 @@ const BarChartComp = () => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="date" />
           <YAxis allowDecimals={false}/>
           <Tooltip />
           <Legend />
