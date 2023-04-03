@@ -36,8 +36,8 @@ function Register() {
   return (
     <form className='h-screen relative bg-[#070417]' onSubmit={handleSubmit}>
         <div className=' text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-4
-            flex flex-col bg-white/30 z-30 backdrop-blur-3xl p-10 rounded-md'>
-            <h1 className='text-center font-semibol text-3xl z-40'>Sign up for Jobster</h1>
+            flex flex-col bg-white/30 z-30 backdrop-blur-3xl p-10 rounded-md w-80'>
+            <h1 className='text-center font-semibold text-3xl z-40'>Sign up for Jobster</h1>
             <InputForm 
                 name="Username"
                 type="text"

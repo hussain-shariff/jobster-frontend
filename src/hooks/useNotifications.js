@@ -2,22 +2,24 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const notifySuccess = (msg) => toast.success(`🦄 ${msg}`, {
-    position: "top-center",
+    position: "top-left",
     autoClose: 2000,
-    hideProgressBar: false,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    progress: undefined,
+    theme: "light",
     })
 
 export const notifyError = (msg) => toast.error(msg , {
-    position: "top-center",
+    position: "top-left",
     autoClose: 2000,
-    hideProgressBar: false,
+    hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    progress: undefined,
+    theme: "light",
     });
 
