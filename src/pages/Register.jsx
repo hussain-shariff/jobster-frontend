@@ -5,11 +5,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
 import sendRegisterData from '../hooks/useRegister';
+import sendLoginData from '../hooks/useLogin';
 import { useNavigate } from "react-router-dom"
 
 function Register() {
     const navigate = useNavigate()
     const [loading, setloading] = useState(false)
+    const [demoLoading, setdemoLoading] = useState(false)
     const [formData, setformData] = useState({
         Username : "",
         Email : "",
@@ -31,6 +33,16 @@ function Register() {
             Email : "",
             Password : ""
         })
+    }
+
+    const handleDemoApp = async () =>{
+        setdemoLoading(true)
+        await sendLoginData(
+            'testUser@test.com',
+            'secret',
+            setdemoLoading,
+            navigate
+        )
     }
 
   return (
@@ -57,8 +69,8 @@ function Register() {
                 value = {formData.Password}
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button className={`bg-white py-1 rounded-md 
-            font-semibold hover:scale-105 ${loading && 'pointer-events-none'} transition ease-out duration-500 w-full text-[#070417]`}
+            <button disabled={loading} className={`bg-white py-1 rounded-md 
+            font-semibold hover:scale-105 ${loading && 'cursor-not-allowed'} transition ease-out duration-500 w-full text-[#070417]`}
             type='submit'>
                 Complete Sign Up
                 <ClipLoader
@@ -68,13 +80,13 @@ function Register() {
                     className='ml-2 -mb-1'
                 />
             </button>
-            <button className={`bg-white py-1 rounded-md 
-            font-semibold hover:scale-105 ${loading && 'pointer-events-none'} transition ease-out duration-500 w-full text-[#070417]`}
+            <button onClick={handleDemoApp} disabled={demoLoading} className={`bg-white py-1 rounded-md 
+            font-semibold hover:scale-105 ${demoLoading && 'cursor-not-allowed'} transition ease-out duration-500 w-full text-[#070417]`}
             type='button'>
                 Demo App
                 <ClipLoader
                     color='#230e2e'
-                    loading={loading}
+                    loading={demoLoading}
                     size={20}
                     className='ml-2 -mb-1'
                 />

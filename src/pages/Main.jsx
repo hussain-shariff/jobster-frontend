@@ -17,12 +17,12 @@ function Main() {
   const {showSideBar, currentPage} = state
 
   useEffect(()=>{
-    getUser()
-    setTimeout(()=>{
-      if (!user){
-        navigate('/')
-      }
-    }, [2000])
+    if (!user){
+      navigate('/')
+    }
+    else{
+      getUser()
+    }
   }, [])
 
   return (

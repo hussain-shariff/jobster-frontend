@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function SignIn() {
     const navigate = useNavigate()
     const [loading, setloading] = useState(false)
+    const [demoLoading, setdemoLoading] = useState(false)
     const [formData, setformData] = useState({
         Email : "",
         Password : ""
@@ -28,6 +29,16 @@ function SignIn() {
             Email : "",
             Password : ""
         })
+    }
+    
+    const handleDemoApp = async () =>{
+        setdemoLoading(true)
+        await sendLoginData(
+            'testUser@test.com',
+            'secret',
+            setdemoLoading,
+            navigate
+        )
     }
 
   return (
@@ -50,8 +61,8 @@ function SignIn() {
                 placeholder=""
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button type='submit' className={`bg-white py-1 px-10 rounded-md
-            font-semibold hover:scale-105 transition ${loading && 'pointer-events-none'} ease-out duration-500 w-full text-black`}>
+            <button disabled={loading} type='submit' className={`bg-white py-1 px-10 rounded-md
+            font-semibold hover:scale-105 transition ${loading && 'cursor-not-allowed'} ease-out duration-500 w-full text-black`}>
                 Sign in
                 <ClipLoader
                     color='#230e2e'
@@ -60,12 +71,13 @@ function SignIn() {
                     className='ml-2 -mb-1'
                 />
             </button>
-            <button type='button' className={`bg-white py-1 px-10 rounded-md font-semibold hover:scale-105 
-            transition ${loading && 'pointer-events-none'} ease-out duration-500 w-full text-black`}>
+            <button type='button' disabled={loading} className={`bg-white py-1 px-10 rounded-md font-semibold hover:scale-105 
+            transition ${demoLoading && 'cursor-not-allowed'} ease-out duration-500 w-full text-black`}
+            onClick={handleDemoApp}>
                 Demo App
                 <ClipLoader
                     color='#230e2e'
-                    loading={loading}
+                    loading={demoLoading}
                     size={20}
                     className='ml-2 -mb-1'
                 />
