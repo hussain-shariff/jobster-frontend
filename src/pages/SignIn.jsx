@@ -50,8 +50,8 @@ function SignIn() {
                 placeholder=""
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button type='submit' className='bg-white py-1 px-10 rounded-md
-            font-semibold hover:scale-105 transition ease-out duration-500 w-full text-black'>
+            <button type='submit' className={`bg-white py-1 px-10 rounded-md
+            font-semibold hover:scale-105 transition ${loading && 'pointer-events-none'} ease-out duration-500 w-full text-black`}>
                 Sign in
                 <ClipLoader
                     color='#230e2e'
