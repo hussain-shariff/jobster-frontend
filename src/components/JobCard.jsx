@@ -39,9 +39,10 @@ function JobCard({jobDetails}) {
   return (
     <div className='bg-white/20 backdrop-blur-3xl p-5 rounded-md
     hover:scale-105 cursor-pointer transition ease-out duration-500 relative'>
-        <div className={`absolute w-1 h-full bg-[#8d53de] top-0 left-0 rounded-l-md`}></div>
-        <div className='flex items-center gap-5 border-b-2 pb-5'>
-            <div className='w-12 h-12 bg-purple-500 rounded-full text-white flex items-center
+        <div className={`absolute w-full h-[1.5px] bg-gradient-to-r via-[#8d53de] top-0 left-0 rounded-l-md`}></div>
+        <div className={`absolute w-full h-[1.5px] bg-gradient-to-l via-[#8d53de] bottom-0 left-0 rounded-l-md`}></div>
+        <div className='flex items-center gap-5 border-b-[2px] border-gray-500 pb-5'>
+            <div className='w-12 h-12 bg-gradient-to-br from-purple-500 rounded-full text-white flex items-center
             justify-center text-2xl font-semibold uppercase'>
                 {jobDetails.company[0]}
             </div>
