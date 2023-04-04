@@ -22,7 +22,7 @@ function HeroSection() {
                 </button>
             </Link>
         </div>
-        <img draggable="false" src="../public/hero.png" alt="" className='hidden absolute h-[450px] -top-7 left-[650px] md:block'/>
+        <img draggable="false" src="/hero.png" alt="" className='hidden absolute h-[450px] -top-7 left-[650px] md:block'/>
     </div>
   )
 }
