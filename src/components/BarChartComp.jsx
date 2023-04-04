@@ -21,7 +21,7 @@ const BarChartComp = () => {
         <BarChart
           width={500}
           height={300}
-          data={monthlyApplications}
+          data={data}
           margin={{
             top: 10,
             left : -10,
