@@ -12,7 +12,8 @@ import { useAppContext } from '../context'
 function Stats() {
   const [showBarChart, setshowBarChart] = useState(true)
   const { state, getStats } = useAppContext()
-  const {pending, declined, interview} = state
+  const {pending, declined, interview, monthlyApplications} = state
+  console.log(pending, interview, declined);
 
   useEffect(()=>{
     getStats()
@@ -39,7 +40,7 @@ function Stats() {
           number={declined}
           stat='Jobs Declined'/>
       </div>
-      <div className='mx-auto mt-7 flex flex-col items-center'>
+      {monthlyApplications.length > 0 && <div className='mx-auto mt-7 flex flex-col items-center'>
         <h1 className='text-center text-2xl text-white md:text-3xl font-semibold'>Monthly Applications</h1>
         <div className='text-[#8884d8] group flex w-32 cursor-pointer mt-3 mb-5 text-xl font-semibold'
         onClick={()=> setshowBarChart(!showBarChart)}>
@@ -49,7 +50,7 @@ function Stats() {
         </div>
         {showBarChart && <BarChartComp />}
         {!showBarChart && <AreaChartComp/>}
-      </div>
+      </div>}
     </div>
   )
 }

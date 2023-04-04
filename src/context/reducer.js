@@ -51,22 +51,9 @@ function jobsReducer(state, action) {
         }
     }
     if(action.type === "GET_ALL_JOBS"){
-        let pending = 0, declined = 0, interview = 0
-        action.jobs.forEach(job=>{
-            if (job.status === 'pending'){
-                pending++
-            }else if(job.jobType === 'interview'){
-                interview++
-            }else{
-                declined++
-            }
-        })
         return {
             ...state,
             jobs : action.jobs,
-            pending,
-            declined,
-            interview
         }
     }
     if(action.type === "GET_STATS"){
@@ -74,7 +61,7 @@ function jobsReducer(state, action) {
         action.payload.jobs.forEach(job=>{
             if (job.status === 'pending'){
                 pending++
-            }else if(job.jobType === 'interview'){
+            }else if(job.status === 'interview'){
                 interview++
             }else{
                 declined++
