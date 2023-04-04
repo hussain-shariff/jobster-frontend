@@ -68,6 +68,17 @@ function Register() {
                     className='ml-2 -mb-1'
                 />
             </button>
+            <button className={`bg-white py-1 rounded-md 
+            font-semibold hover:scale-105 ${loading && 'pointer-events-none'} transition ease-out duration-500 w-full text-[#070417]`}
+            type='button'>
+                Demo App
+                <ClipLoader
+                    color='#230e2e'
+                    loading={loading}
+                    size={20}
+                    className='ml-2 -mb-1'
+                />
+            </button>
             <p className='text-center'>Already have an account?
                 <Link to={'/signIn'}>
                     <span className='border-b ml-2 cursor-pointer hover:border-blue-600

@@ -60,6 +60,16 @@ function SignIn() {
                     className='ml-2 -mb-1'
                 />
             </button>
+            <button type='button' className={`bg-white py-1 px-10 rounded-md font-semibold hover:scale-105 
+            transition ${loading && 'pointer-events-none'} ease-out duration-500 w-full text-black`}>
+                Demo App
+                <ClipLoader
+                    color='#230e2e'
+                    loading={loading}
+                    size={20}
+                    className='ml-2 -mb-1'
+                />
+            </button>
             <p className='text-center'>Need an account?
                 <Link to={'/register'}>
                     <span className='border-b ml-2 cursor-pointer hover:border-blue-600
