@@ -22,9 +22,8 @@ function HeroSection() {
                 </button>
             </Link>
         </div>
-        <img src="../public/main.svg" alt="" className='hidden absolute h-[400px] -top-5 left-[600px] md:block'/>
+        <img draggable="false" src="../public/hero.png" alt="" className='hidden absolute h-[450px] -top-7 left-[650px] md:block'/>
     </div>
   )
 }
-
 export default HeroSection
