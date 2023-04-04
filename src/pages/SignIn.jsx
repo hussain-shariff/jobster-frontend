@@ -61,7 +61,7 @@ function SignIn() {
                 placeholder=""
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button disabled={loading} type='submit' className={`bg-white py-1 px-10 rounded-md
+            <button disabled={loading} type='submit' className={`bg-white py-1 px-10 rounded-sm
             font-semibold hover:scale-105 transition ${loading && 'cursor-not-allowed'} ease-out duration-500 w-full text-black`}>
                 Sign in
                 <ClipLoader
@@ -71,7 +71,7 @@ function SignIn() {
                     className='ml-2 -mb-1'
                 />
             </button>
-            <button type='button' disabled={loading} className={`bg-white py-1 px-10 rounded-md font-semibold hover:scale-105 
+            <button type='button' disabled={demoLoading} className={`bg-white py-1 px-10 rounded-sm font-semibold hover:scale-105 
             transition ${demoLoading && 'cursor-not-allowed'} ease-out duration-500 w-full text-black`}
             onClick={handleDemoApp}>
                 Demo App

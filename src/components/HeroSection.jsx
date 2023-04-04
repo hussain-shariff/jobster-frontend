@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 function HeroSection() {
   return (
     <div className='text-white max-w-xl text-center md:text-start relative mt-20'>
-        <div className='absolute -top-10 -left-4 w-72 h-96 rounded-full bg-[#460d64]  blur-3xl'></div>
-        <div className='absolute top-8 right-10 w-72 h-96 rounded-full bg-[#1e3850]  blur-3xl'></div>
+        <div className='absolute -top-10 left-14 w-80 h-80 rounded-full bg-[#460d64] blur-3xl'></div>
         <div className='relative px-8 md:px-0'>
             <h1 className='text-4xl font-bold md:leading-tight md:text-5xl'>
                 Unleash Your Job Search with Our Innovative Application Tool.

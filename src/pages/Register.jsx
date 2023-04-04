@@ -69,7 +69,7 @@ function Register() {
                 value = {formData.Password}
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button disabled={loading} className={`bg-white py-1 rounded-md 
+            <button disabled={loading} className={`bg-white py-1 rounded-sm 
             font-semibold hover:scale-105 ${loading && 'cursor-not-allowed'} transition ease-out duration-500 w-full text-[#070417]`}
             type='submit'>
                 Complete Sign Up
@@ -80,7 +80,7 @@ function Register() {
                     className='ml-2 -mb-1'
                 />
             </button>
-            <button onClick={handleDemoApp} disabled={demoLoading} className={`bg-white py-1 rounded-md 
+            <button onClick={handleDemoApp} disabled={demoLoading} className={`bg-white py-1 rounded-sm 
             font-semibold hover:scale-105 ${demoLoading && 'cursor-not-allowed'} transition ease-out duration-500 w-full text-[#070417]`}
             type='button'>
                 Demo App
