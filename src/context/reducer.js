@@ -1,4 +1,3 @@
-
 export const initialState = {
     user : '',
     updatedUser : '',
@@ -108,7 +107,9 @@ function jobsReducer(state, action) {
             filterStatus : 'all',
             isEditing : false,
             search : '',
-            sort : 'latest' 
+            sort : 'latest',
+            showLogoutButton : false,
+            showSideBar : false,
         }
     }
     if(action.type === "TOGGLE_LOGOUT_BUTTON"){

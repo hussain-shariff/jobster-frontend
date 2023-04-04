@@ -10,13 +10,15 @@ import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context'
 
 function MainNav() {
-    const { toggleSidebar, state } = useAppContext()
+    const { toggleSidebar, state, clearValues, setcurrentPage } = useAppContext()
     const {showSideBar, showLogoutButton} = state
     const navigate = useNavigate()
 
     const handleLogOut = () =>{
         localStorage.removeItem('user')
         localStorage.removeItem('token')
+        setcurrentPage('Stats')
+        clearValues()
         navigate('/')
     }
 
