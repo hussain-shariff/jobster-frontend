@@ -1,7 +1,9 @@
 # Jobster - A job tracking web application
 
 A MERN-stack job tracking web app
-project in action [jobster](https://jobster-frontend.vercel.app/signIn)
+
+
+project in action - [jobster](https://jobster-frontend.vercel.app)
 
 # Tech Stack
 
