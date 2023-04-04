@@ -10,9 +10,11 @@ import {
 import JobItem from './JobItem'
 import moment from 'moment'
 import { useAppContext } from '../context';
+import { notifyError } from '../hooks/useNotifications';
 
 function JobCard({jobDetails}) {
-    const {deleteOneJob, editJob} = useAppContext()
+    const {deleteOneJob, editJob, state} = useAppContext()
+    const {user} = state
     let icon;
     if(jobDetails.status.toLowerCase() === "pending"){
         icon = faClock
@@ -23,6 +25,15 @@ function JobCard({jobDetails}) {
     }
     let date = moment(jobDetails.createdAt)
     date = date.format('MMM Do, YYYY')
+
+    const handleDelete = () =>{
+        if (user === 'test user'){
+            notifyError('test user! read only')
+        }
+        else{
+            deleteOneJob(jobDetails._id)
+        }
+    }
 
 
   return (
@@ -64,7 +75,7 @@ function JobCard({jobDetails}) {
             </button>
             <button className='border-gray-400 border-2 px-2 text-gray-400 rounded-md
             hover:text-purple-300 hover:border-purple-300'
-            onClick={()=>deleteOneJob(jobDetails._id)}>Delete</button>
+            onClick={handleDelete}>Delete</button>
         </div>
     </div>
   )

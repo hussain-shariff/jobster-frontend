@@ -13,7 +13,6 @@ function Stats() {
   const [showBarChart, setshowBarChart] = useState(true)
   const { state, getStats } = useAppContext()
   const {pending, declined, interview, monthlyApplications} = state
-  console.log(pending, interview, declined);
 
   useEffect(()=>{
     getStats()

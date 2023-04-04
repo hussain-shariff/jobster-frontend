@@ -1,9 +1,10 @@
 import React from 'react'
 import JobInput from '../components/JobInput'
 import { useAppContext } from '../context';
+import { notifyError } from '../hooks/useNotifications';
 
 function UserProfile() {
-    const {state, handleChange, updateUser, clearValues} = useAppContext()
+    const {state, handleChange, updateUser} = useAppContext()
     const {user, lastname, userLocation, updatedUser} = state
 
     const handleSearch = (e) =>{
@@ -13,7 +14,11 @@ function UserProfile() {
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        updateUser()
+        if(user === 'test user'){
+            notifyError('test user! read only.')
+        }else{
+            updateUser()
+        }
     }
 
   return (

@@ -4,6 +4,7 @@ import Select from 'react-select'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppContext } from '../context';
+import { notifyError } from '../hooks/useNotifications';
 import {
     statusOptions,
     jobTypeOptions
@@ -11,7 +12,7 @@ import {
 
 function AddJob() {
     const {createJob, updateJob, state, handleChange, clearValues} = useAppContext()
-    const {isEditing, position, company, location, jobType, status} = state
+    const {isEditing, position, company, location, user} = state
     const selectStyles = {
         control : (baseStyles, state) => ({
             ...baseStyles,
@@ -39,13 +40,18 @@ function AddJob() {
     
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        if(isEditing){
+        if(user === 'test user'){
+            notifyError('test user ! read only.')
+        }
+        else if(isEditing){
             updateJob()
+            clearValues()
         }
         else{
             createJob()
+            clearValues()
         }
-        clearValues()
+        
     }   
 
   return (
@@ -89,7 +95,7 @@ function AddJob() {
                 transition ease-out duration-300 py-2 md:py-0 text-white'>
                     Submit
                 </button>
-                <button className='bg-white/30 rounded-md w-36 hover:bg-white/40
+                <button type='button' className='bg-white/30 rounded-md w-36 hover:bg-white/40
                 transition ease-out duration-300 py-2 md:py-0 text-white' onClick={()=> clearValues()}>
                     Clear
                 </button>
