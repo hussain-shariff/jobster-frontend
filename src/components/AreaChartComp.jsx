@@ -1,6 +1,5 @@
 import React from 'react'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import data from '../data';
 import { useAppContext } from '../context';
 
 const AreaChartComp = () => {
@@ -12,7 +11,7 @@ const AreaChartComp = () => {
             <AreaChart
             width={500}
             height={400}
-            data={data}
+            data={monthlyApplications}
             margin={{
                 top: 10,
                 right: 30,

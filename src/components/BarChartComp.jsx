@@ -10,7 +10,6 @@ import {
     Legend, 
     ResponsiveContainer 
     } from 'recharts';
-import data from '../data';
 import { useAppContext } from '../context';
 
 const BarChartComp = () => {
@@ -21,7 +20,7 @@ const BarChartComp = () => {
         <BarChart
           width={500}
           height={300}
-          data={data}
+          data={monthlyApplications}
           margin={{
             top: 10,
             left : -10,
