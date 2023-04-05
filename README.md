@@ -1,6 +1,6 @@
 # Jobster - A job tracking web application
 
-A MERN-stack job tracking web app
+A MERN-stack job tracking web app , authentication and authorization using JWT
 
 
 project in action - [jobster](https://jobster-frontend.vercel.app)
@@ -47,12 +47,16 @@ Start the server
 ```
 
 ## Screenshot
+![Screenshot (205)](https://user-images.githubusercontent.com/118625304/229863099-c0f353ba-0fdf-4d71-978b-82094bcfc79e.png)
 
 
+<<<<<<< HEAD
 ![Screenshot (205)](https://user-images.githubusercontent.com/118625304/229863099-c0f353ba-0fdf-4d71-978b-82094bcfc79e.png)
 
 
 ### authentication and authorization using JWT
+=======
+>>>>>>> e59175652aa36944a7fc091bc4217ad8c60c01fe
 ![Screenshot (204)](https://user-images.githubusercontent.com/118625304/229851730-91ec5cec-b64d-4bd2-a9d7-7bd7c3b13452.png)
 
 
