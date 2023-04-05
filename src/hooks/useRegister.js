@@ -1,6 +1,6 @@
 import { notifySuccess, notifyError } from "./useNotifications"
 
-const sendRegisterData = async (name, email, password, setloading, navigate) =>{
+const sendRegisterData = async (name, email, password, setloading, setDisable, navigate) =>{
     fetch('https://jobs-api-81wf.onrender.com/api/v1/auth/register', {
         method : "POST",
         headers : { 'content-type' : 'application/json'},
@@ -13,6 +13,7 @@ const sendRegisterData = async (name, email, password, setloading, navigate) =>{
         .then(res=> res.json())
         .then(json=> {
             setloading(false)
+            setDisable(false)
             notifySuccess('Registered successfully')
             localStorage.setItem('token', json.token)
             localStorage.setItem('user', json.user)
@@ -23,6 +24,7 @@ const sendRegisterData = async (name, email, password, setloading, navigate) =>{
         .catch(err=> {
             notifyError('Email already in use')
             setloading(false)
+            setDisable(false)
         })
 }
 

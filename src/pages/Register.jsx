@@ -10,8 +10,9 @@ import { useNavigate } from "react-router-dom"
 
 function Register() {
     const navigate = useNavigate()
-    const [loading, setloading] = useState(false)
+    const [isDisable, setIsDisable] = useState(false)
     const [demoLoading, setdemoLoading] = useState(false)
+    const [userLoading, setUserLoading] = useState(false)
     const [formData, setformData] = useState({
         Username : "",
         Email : "",
@@ -20,12 +21,14 @@ function Register() {
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        setloading(true)
+        setIsDisable(true)
+        setUserLoading(true)
         await sendRegisterData(
             formData.Username,
             formData.Email,
             formData.Password,
-            setloading,
+            setUserLoading,
+            setIsDisable,
             navigate
             )
         setformData({
@@ -37,10 +40,12 @@ function Register() {
 
     const handleDemoApp = async () =>{
         setdemoLoading(true)
+        setIsDisable(true)
         await sendLoginData(
             'testUser@test.com',
             'secret',
             setdemoLoading,
+            setIsDisable,
             navigate
         )
     }
@@ -69,19 +74,19 @@ function Register() {
                 value = {formData.Password}
                 autoComplete ='new-password'
                 setformData = { setformData } />
-            <button disabled={loading} className={`bg-white py-1 rounded-sm 
-            font-semibold hover:scale-105 ${loading && 'cursor-not-allowed'} transition ease-out duration-500 w-full text-[#070417]`}
+            <button disabled={isDisable} className={`bg-white py-1 rounded-sm 
+            font-semibold hover:scale-105 ${isDisable && 'cursor-not-allowed'} transition ease-out duration-500 w-full text-[#070417]`}
             type='submit'>
                 Complete Sign Up
                 <ClipLoader
                     color='#230e2e'
-                    loading={loading}
+                    loading={userLoading}
                     size={20}
                     className='ml-2 -mb-1'
                 />
             </button>
-            <button onClick={handleDemoApp} disabled={demoLoading} className={`bg-white py-1 rounded-sm 
-            font-semibold hover:scale-105 ${demoLoading && 'cursor-not-allowed'} transition ease-out duration-500 w-full text-[#070417]`}
+            <button onClick={handleDemoApp} disabled={isDisable} className={`bg-white py-1 rounded-sm 
+            font-semibold hover:scale-105 ${isDisable && 'cursor-not-allowed'} transition ease-out duration-500 w-full text-[#070417]`}
             type='button'>
                 Demo App
                 <ClipLoader

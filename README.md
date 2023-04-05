@@ -49,7 +49,8 @@ Start the server
 ## Screenshot
 
 
-![Jobster website overview](https://user-images.githubusercontent.com/118625304/229851082-b1dc5280-816a-4e0d-a16d-65cb7afe2d6e.png)
+![Screenshot (205)](https://user-images.githubusercontent.com/118625304/229863099-c0f353ba-0fdf-4d71-978b-82094bcfc79e.png)
+
 
 ### authentication and authorization using JWT
 ![Screenshot (204)](https://user-images.githubusercontent.com/118625304/229851730-91ec5cec-b64d-4bd2-a9d7-7bd7c3b13452.png)

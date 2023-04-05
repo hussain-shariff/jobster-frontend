@@ -1,6 +1,6 @@
 import { notifySuccess, notifyError } from "./useNotifications"
 
-const sendLoginData = async (email, password, setloading, navigate) =>{
+const sendLoginData = async (email, password, setloading, setDisable, navigate) =>{
     fetch('https://jobs-api-81wf.onrender.com/api/v1/auth/login', {
         method : "POST",
         headers : { 'content-type' : 'application/json'},
@@ -13,6 +13,7 @@ const sendLoginData = async (email, password, setloading, navigate) =>{
         .then(json=> {
             notifySuccess('Sign in successfull')
             setloading(false)
+            setDisable(false)
             localStorage.setItem('user', json.user)
             localStorage.setItem('token', json.token)
             setTimeout(()=>{
@@ -21,6 +22,7 @@ const sendLoginData = async (email, password, setloading, navigate) =>{
         })
         .catch(err=> {
             setloading(false)
+            setDisable(false)
             notifyError('Invalid username or password')
         })
 }
