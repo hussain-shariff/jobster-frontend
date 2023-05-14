@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import { JobsProvider } from './context'
+import {QueryClientProvider, QueryClient } from 'react-query'
+import {ReactQueryDevtools} from 'react-query/devtools'
+
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <JobsProvider>
-      <App />
-    </JobsProvider>
+    <QueryClientProvider client={queryClient}>
+      <JobsProvider>
+        <App />
+      </JobsProvider>
+      <ReactQueryDevtools initialIsOpen/>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

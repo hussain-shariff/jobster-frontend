@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputForm from '../components/InputForm'
 import sendRegisterData from '../hooks/useRegister';
-import sendLoginData from '../hooks/useLogin';
+// import sendLoginData from '../hooks/useLogin';
 import { useNavigate } from "react-router-dom"
 
 function Register() {
