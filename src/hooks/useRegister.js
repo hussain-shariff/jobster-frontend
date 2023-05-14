@@ -1,31 +1,25 @@
 import { notifySuccess, notifyError } from "./useNotifications"
+import axios from "axios"
+import { useMutation } from "react-query"
 
-const sendRegisterData = async (name, email, password, setloading, setDisable, navigate) =>{
-    fetch('https://jobs-api-81wf.onrender.com/api/v1/auth/register', {
-        method : "POST",
-        headers : { 'content-type' : 'application/json'},
-        body : JSON.stringify({
-            username : name,
-            email : email,
-            password : password
-        })
-    })
-        .then(res=> res.json())
-        .then(json=> {
-            setloading(false)
-            setDisable(false)
-            notifySuccess('Registered successfully')
-            localStorage.setItem('token', json.token)
-            localStorage.setItem('user', json.user)
-            setTimeout(()=>{
-                navigate('/dashboard')
-            }, 2000)
-        })
-        .catch(err=> {
-            notifyError('Email already in use')
-            setloading(false)
-            setDisable(false)
-        })
+const fetchApi = async (credentials) => {
+	return await axios.post(
+		"https://jobs-api-81wf.onrender.com/api/v1/auth/register",
+		credentials
+	)
 }
 
-export default sendRegisterData
+export const registerUser = (navigate) => {
+	return useMutation(fetchApi, {
+		onSuccess: (data) => {
+			notifySuccess("Registered successfully")
+			localStorage.setItem("token", data.data.token)
+			localStorage.setItem("user", data.data.user)
+			setTimeout(() => {
+				navigate("/dashboard")
+			}, 2000)
+		},
+		onError: () => notifyError("Email already in use")
+	})
+}
+
