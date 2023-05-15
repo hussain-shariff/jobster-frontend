@@ -15,8 +15,7 @@ function JobsProvider({children}) {
       dispatch({type : "SET_USER", userData})
     }
     
-    const getStats = async () =>{
-      const statsData = await stats()
+    const getStats = async (statsData) =>{
       dispatch({type : "GET_STATS", payload:{
         jobs : statsData.jobs,
         monthlyApplications : statsData.monthlyApplications

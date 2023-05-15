@@ -8,17 +8,18 @@ import {
 import BarChartComp from '../components/BarChartComp'
 import AreaChartComp from '../components/AreaChartComp'
 import { useAppContext } from '../context'
+import { useQuery } from 'react-query'
+import { fetchJobs } from '../hooks/useGetJobs'
 
 function Stats() {
   const [showBarChart, setshowBarChart] = useState(true)
   const { state, getStats } = useAppContext()
   const {pending, declined, interview, monthlyApplications} = state
-
-  useEffect(()=>{
-    getStats()
-  }, [])
+  const {data, isLoading} = useQuery('get-jobs', fetchJobs, {
+    onSuccess : (data) => getStats(data.data)
+  })
   
-
+  if(isLoading) return <h1>Loading...</h1>
   return (
     <div>
       <div className='grid grid-cols-1 gap-6 px-6 md:grid-cols-3 md:px-10 my-3'>
