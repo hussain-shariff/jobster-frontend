@@ -1,8 +1,6 @@
 import axios from "axios"
-import { useQuery } from "react-query"
 
-
-const fetchApi = async () => {
+export const fetchUser = async () => {
 	const token = localStorage.getItem("token")
 	try {
 		return await axios.get(
@@ -16,11 +14,5 @@ const fetchApi = async () => {
 	} catch (error) {
         console.log(error);
     }
-}
-
-export const getCurrUser = (getUser)=>{
-    return useQuery('get-user', fetchApi, {
-        onSuccess : (data)=> getUser(data.data)
-    })
 }
 

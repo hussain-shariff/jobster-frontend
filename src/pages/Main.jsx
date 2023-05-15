@@ -9,25 +9,23 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { useAppContext } from "../context"
 import UserProfile from "./UserProfile"
-import { getCurrUser } from "../hooks/useGetUser"
+import { fetchUser } from "../hooks/useGetUser"
+import { useQuery } from "react-query"
 
 function Main() {
 	const user = localStorage.getItem("user")
 	const navigate = useNavigate()
 	const { state, getUser } = useAppContext()
 	const { showSideBar, currentPage } = state
-	const { data, isLoading } = getCurrUser(getUser)
+	const { data, isLoading } = useQuery("get-user", fetchUser, {
+		onSuccess: (data) => getUser(data.data),
+	})
 
 	useEffect(() => {
 		if (!user) {
 			navigate("/")
-		} 
-    // else {
-		// 	getUser(data)
-		// }
+		}
 	}, [])
-
-	if (isLoading) return <h1 className=" text-3xl font-bold">Loading...</h1>
 
 	return (
 		<div className="bg-gradient-to-l min-h-screen from-[#130e3e] to-[#030209]">
