@@ -1,4 +1,5 @@
 import axios from "axios"
+import { useQuery } from "react-query"
 
 export const fetchJobs = () => {
 	const token = localStorage.getItem("token")
@@ -9,20 +10,27 @@ export const fetchJobs = () => {
 	})
 }
 
-const stats = async () => {
-	const token = localStorage.getItem("token")
-	try {
-		const res = await fetch(`https://jobs-api-81wf.onrender.com/api/v1/jobs`, {
-			method: "GET",
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
-		const data = await res.json()
-		return data
-	} catch (error) {
-		console.log(error)
-	}
+export const getStats = () => {
+	return useQuery("get-stats", fetchJobs, {
+		select: (data) => {
+			let pending = 0,
+				declined = 0,
+				interview = 0
+			data.data.jobs.forEach((job) => {
+				if (job.status === "pending") {
+					pending++
+				} else if (job.status === "interview") {
+					interview++
+				} else {
+					declined++
+				}
+			})
+			return {
+				pending,
+				declined,
+				interview,
+				monthlyApplications: data.data.monthlyApplications,
+			}
+		},
+	})
 }
-
-export default stats
