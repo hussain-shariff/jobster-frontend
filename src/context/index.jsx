@@ -6,14 +6,12 @@ import deleteJob from '../hooks/useDelete'
 import useCreateJob from '../hooks/useCreateJob'
 import useEditJob from '../hooks/useEditJob'
 import useUpdateUser from '../hooks/useUpdateUser'
-import getCurrentUser from '../hooks/useGetUser'
 const jobContext = createContext()
 
 function JobsProvider({children}) {
     const [state, dispatch] = useReducer(jobsReducer, initialState)
 
-    const getUser = async () =>{
-      const userData = await getCurrentUser()
+    const getUser = (userData) =>{
       dispatch({type : "SET_USER", userData})
     }
     
