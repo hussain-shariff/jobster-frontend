@@ -1,6 +1,5 @@
 import React, {createContext, useState, useContext, useReducer } from 'react'
 import jobsReducer, {initialState} from './reducer'
-import filterJobs from '../hooks/useFilterJobs'
 import deleteJob from '../hooks/useDelete'
 import useCreateJob from '../hooks/useCreateJob'
 import useEditJob from '../hooks/useEditJob'
@@ -12,19 +11,6 @@ function JobsProvider({children}) {
 
     const getUser = (userData) =>{
       dispatch({type : "SET_USER", userData})
-    }
-    
-    const getJobs = async () =>{
-      const allJobs = await filterJobs(
-        state.filterStatus,
-        state.filterJobType,
-        state.search,
-        state.sort
-      )
-      dispatch({
-        type : "GET_ALL_JOBS",
-        jobs : allJobs
-      })
     }
     
     const deleteOneJob = async (id) =>{
@@ -94,7 +80,6 @@ function JobsProvider({children}) {
         state,
         handleChange,
         getUser,
-        getJobs,
         toggleSidebar,
         setcurrentPage,
         toggleLogoutButton,

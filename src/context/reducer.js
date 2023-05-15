@@ -3,7 +3,6 @@ export const initialState = {
     updatedUser : '',
     lastname : '',
     userLocation : "",
-    jobs : [],
     showLogoutButton : false,
     showSideBar : false,
     currentPage : 'Stats',
@@ -43,12 +42,6 @@ function jobsReducer(state, action) {
         return {
             ...state,
             isLoading : !state.isLoading
-        }
-    }
-    if(action.type === "GET_ALL_JOBS"){
-        return {
-            ...state,
-            jobs : action.jobs,
         }
     }
     if(action.type === "TOGGLE_SIDEBAR"){

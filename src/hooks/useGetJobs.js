@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useQuery } from "react-query"
 
-export const fetchJobs = () => {
+export const fetchStats = () => {
 	const token = localStorage.getItem("token")
 	return axios.get("https://jobs-api-81wf.onrender.com/api/v1/jobs", {
 		headers: {
@@ -11,7 +11,7 @@ export const fetchJobs = () => {
 }
 
 export const getStats = () => {
-	return useQuery("get-stats", fetchJobs, {
+	return useQuery("get-stats", fetchStats, {
 		select: (data) => {
 			let pending = 0,
 				declined = 0,
