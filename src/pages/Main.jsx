@@ -18,7 +18,7 @@ function Main() {
 	const { state, getUser } = useAppContext()
 	const { showSideBar, currentPage } = state
 	const { data, isLoading } = useQuery("get-user", fetchUser, {
-		onSuccess: (data) => getUser(data.data),
+		onSuccess: data => getUser(data.data),
 	})
 
 	useEffect(() => {
