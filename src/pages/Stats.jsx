@@ -11,10 +11,12 @@ import { getStats } from "../hooks/useGetJobs"
 
 function Stats() {
 	const [showBarChart, setshowBarChart] = useState(true)
-	const { data, isLoading } = getStats()
+	const { data, isLoading, isError, error } = getStats()
 
 	if (isLoading)
 		return <h1 className=" text-white font-bold text-3xl ml-20">Loading...</h1>
+	if (isError)
+		return <h1 className=" text-white font-bold text-3xl ml-20">{error.message}</h1>
 
 	return (
 		<div>

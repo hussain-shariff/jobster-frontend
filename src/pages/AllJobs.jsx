@@ -4,9 +4,10 @@ import SearchJobs from "../components/SearchJobs"
 import { getJobs } from "../hooks/useFilterJobs"
 
 function AllJobs() {
-	const { data, isLoading } = getJobs("", "", "", "")
+	const { data, isLoading, isError, error } = getJobs('interview', 'full-time', '', 'z-a')
 
 	if (isLoading) return <h1 className="text-white text-3xl font-bold ml-20">Loading...</h1>
+	if (isError) return <h1 className="text-white text-3xl font-bold ml-20">{ error.message }</h1>
 
 	return (
 		<div className="mt-4 px-10 mx-auto md:px-20">
