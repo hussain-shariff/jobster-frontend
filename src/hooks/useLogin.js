@@ -15,7 +15,7 @@ export const loginUser = (navigate) => {
 			localStorage.setItem("user", data.data.user)
 			localStorage.setItem("token", data.data.token)
 			setTimeout(() => {
-				navigate("/dashboard")
+				navigate("/stats")
 			}, 2000)
 		},
 		onError: () => notifyError("Invalid Email or password"),

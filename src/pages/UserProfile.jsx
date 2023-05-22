@@ -22,7 +22,7 @@ function UserProfile() {
     }
 
   return (
-    <div className='p-10 rounded-md'>
+    <div className='p-10 rounded-md px-12 md:px-20 mt-5'>
         <h1 className='text-center text-3xl text-white mb-3'>Profile</h1>
         <form className='grid grid-cols-1 md:grid-cols-3 gap-3 ' onSubmit={handleSubmit}>
             <JobInput

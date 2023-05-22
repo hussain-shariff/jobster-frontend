@@ -3,6 +3,7 @@ import axios from "axios"
 import { useMutation } from "react-query"
 
 const fetchApi = async (data) => {
+    const token = localStorage.getItem("token")
     const dat = {
         company : 'test',
 		position : 'test',
@@ -11,7 +12,11 @@ const fetchApi = async (data) => {
 		status : 'pending'
     }
 	return await axios.post(
-		`https://jobs-api-81wf.onrender.com/api/v1/jobs`,
+		`https://jobs-api-81wf.onrender.com/api/v1/jobs`,{
+            headers :{
+                Authorization: `Bearer ${token}`
+            }
+        },
 		dat
 	)
 }
@@ -36,7 +41,7 @@ const useCreateJob = async (company, position, location, jobType, status) => {
 	notifySuccess("Job created")
 }
 
-export const createJob = () =>{
+export const postJob = () =>{
     return useMutation(fetchApi, {
         onSuccess : data=> console.log(data.data)
     })

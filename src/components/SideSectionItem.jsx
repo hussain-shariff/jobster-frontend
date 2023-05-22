@@ -1,18 +1,18 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAppContext } from '../context';
+import { Link } from 'react-router-dom';
 
-function SideSectionItem({ name, icon}) {
+function SideSectionItem({ name, icon, url}) {
   const {toggleSidebar, setcurrentPage} = useAppContext()
 
   return (
-    <h3 className='cursor-pointer hover:scale-110 transition ease-out duration-500'
+    <Link to={url} className='cursor-pointer hover:scale-110 transition ease-out duration-500'
     onClick={()=> {
-          setcurrentPage(name)
           toggleSidebar()
       }}>
             <FontAwesomeIcon icon={icon} className='mr-2 h-4'/>{name}
-    </h3>
+    </Link>
   )
 }
 

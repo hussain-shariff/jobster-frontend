@@ -16,7 +16,7 @@ export const registerUser = (navigate) => {
 			localStorage.setItem("token", data.data.token)
 			localStorage.setItem("user", data.data.user)
 			setTimeout(() => {
-				navigate("/dashboard")
+				navigate("/stats")
 			}, 2000)
 		},
 		onError: () => notifyError("Email already in use")
