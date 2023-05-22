@@ -7,9 +7,8 @@ import { fetchUser } from "../hooks/useGetUser"
 import { useQuery } from "react-query"
 
 function UserInfoBtn() {
-	const { toggleLogoutButton, state } = useAppContext()
-	const { user } = state
-  const { data, isLoading } = useQuery('get-user', fetchUser)
+	const { toggleLogoutButton } = useAppContext()
+	const { data, isLoading } = useQuery("get-user", fetchUser)
 
 	return (
 		<div
@@ -21,8 +20,13 @@ function UserInfoBtn() {
 				icon={faUser}
 				className="text-purple-500 p-2 rounded-full"
 			/>
-			<ClipLoader color="white" loading={isLoading} size={20} className="mx-2 -mb-1" />
-			{!isLoading && <p className='mr-2'>{data.data.username}</p>}
+			<ClipLoader
+				color="white"
+				loading={isLoading}
+				size={20}
+				className="mx-2 -mb-1"
+			/>
+			{!isLoading && <p className="mr-2">{data.data.username}</p>}
 			<FontAwesomeIcon icon={faCaretDown} className="mr-2" />
 		</div>
 	)

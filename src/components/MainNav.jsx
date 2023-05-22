@@ -18,7 +18,6 @@ function MainNav() {
         localStorage.removeItem('user')
         localStorage.removeItem('token')
         setcurrentPage('Stats')
-        clearValues()
         navigate('/')
     }
 
