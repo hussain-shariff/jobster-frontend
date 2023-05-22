@@ -31,10 +31,6 @@ function JobsProvider({children}) {
     const toggleSidebar = () => {
       dispatch({ type: 'TOGGLE_SIDEBAR' });
     };
-    
-    const toggleLogoutButton = () => {
-      dispatch({ type: 'TOGGLE_LOGOUT_BUTTON' });
-    };
 
     const setcurrentPage = (page) => {
       dispatch({ type: 'SET_CURRENT_PAGE', page });
@@ -70,7 +66,6 @@ function JobsProvider({children}) {
         getUser,
         toggleSidebar,
         setcurrentPage,
-        toggleLogoutButton,
         deleteOneJob,
         createJob,
         editJob,

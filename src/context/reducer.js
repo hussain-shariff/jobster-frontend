@@ -32,12 +32,7 @@ function jobsReducer(state, action) {
             showSideBar : !state.showSideBar
         }
     }
-    if(action.type === "TOGGLE_LOGOUT_BUTTON"){
-        return {
-            ...state,
-            showLogoutButton : !state.showLogoutButton
-        }
-    }
+
     if(action.type === "SET_CURRENT_PAGE"){
         return {
             ...state,
