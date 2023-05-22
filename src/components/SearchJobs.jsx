@@ -8,7 +8,7 @@ import {
 } from '../searchOptions'
 import { useAppContext } from '../context';
 
-function SearchJobs() {
+function SearchJobs({ handleFilters }) {
     const {state, handleChange, clearValues, setLoading} = useAppContext()
     const {search} = state
     const selectStyles = {
@@ -26,6 +26,7 @@ function SearchJobs() {
     const handleSearch = (e) =>{
         const name = e.target.name
         const value = e.target.value
+        handleFilters(name, value)
         handleChange(name, value)
         setLoading()
     }

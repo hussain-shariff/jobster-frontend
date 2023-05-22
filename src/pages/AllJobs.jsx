@@ -1,17 +1,41 @@
-import React, { useEffect } from "react"
+import React, { useState } from "react"
 import JobCard from "../components/JobCard"
 import SearchJobs from "../components/SearchJobs"
 import { getJobs } from "../hooks/useFilterJobs"
 
 function AllJobs() {
-	const { data, isLoading, isError, error } = getJobs('interview', 'full-time', '', 'z-a')
+	const [filters, setfilters] = useState({
+		status: "all",
+		jobType: "all",
+		search: "",
+		sort: "a-z",
+	})
+	const { data, isLoading, isError, error } = getJobs(
+		filters.status,
+		filters.jobType,
+		filters.search,
+		filters.sort
+	)
 
-	if (isLoading) return <h1 className="text-white text-3xl font-bold ml-20">Loading...</h1>
-	if (isError) return <h1 className="text-white text-3xl font-bold ml-20">{ error.message }</h1>
+	const handleFilters = (name, value) => {
+		setfilters((prev) => {
+			return {
+				...prev,
+				[name]: value,
+			}
+		})
+	}
+
+	if (isLoading)
+		return <h1 className="text-white text-3xl font-bold ml-20">Loading...</h1>
+	if (isError)
+		return (
+			<h1 className="text-white text-3xl font-bold ml-20">{error.message}</h1>
+		)
 
 	return (
 		<div className="mt-4 px-10 mx-auto md:px-20">
-			<SearchJobs />
+			<SearchJobs handleFilters={handleFilters} />
 			<h1 className="text-white text-2xl font-semibold">
 				{data.data.length} Jobs Found
 			</h1>
