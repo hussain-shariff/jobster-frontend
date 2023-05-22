@@ -26,8 +26,15 @@ function AllJobs() {
 		})
 	}
 
-	if (isLoading)
-		return <h1 className="text-white text-3xl font-bold ml-20">Loading...</h1>
+	const clearFilters = () => {
+		setfilters({
+			status: "all",
+			jobType: "all",
+			search: "",
+			sort: "a-z",
+		})
+	}
+
 	if (isError)
 		return (
 			<h1 className="text-white text-3xl font-bold ml-20">{error.message}</h1>
@@ -35,16 +42,27 @@ function AllJobs() {
 
 	return (
 		<div className="mt-4 px-10 mx-auto md:px-20">
-			<SearchJobs handleFilters={handleFilters} />
-			<h1 className="text-white text-2xl font-semibold">
-				{data.data.length} Jobs Found
-			</h1>
-			{data.data && (
-				<div className="grid grid-cols-1 pb-6 mt-5 md:grid-cols-3 gap-x-5 gap-y-10">
-					{data.data.map((job) => (
-						<JobCard key={job._id} jobDetails={job} />
-					))}
-				</div>
+			<SearchJobs
+				handleFilters={handleFilters}
+				clearFilters={clearFilters}
+				searchValue={filters.search}
+			/>
+			{isLoading && (
+				<h1 className="text-white text-3xl font-bold ml-20">Loading...</h1>
+			)}
+			{!isLoading && (
+				<>
+					<h1 className="text-white text-2xl font-semibold">
+						{data.data.length} Jobs Found
+					</h1>
+					{data.data && (
+						<div className="grid grid-cols-1 pb-6 mt-5 md:grid-cols-3 gap-x-5 gap-y-10">
+							{data.data.map((job) => (
+								<JobCard key={job._id} jobDetails={job} />
+							))}
+						</div>
+					)}
+				</>
 			)}
 		</div>
 	)

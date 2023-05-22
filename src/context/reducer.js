@@ -12,12 +12,6 @@ export const initialState = {
     company : '',
     position : '',
     location : '',
-    jobType : 'full-time',
-    filterJobType : 'all',
-    status : 'pending',
-    filterStatus : 'all',
-    search : '',
-    sort : 'latest',
     isLoading: false
 }
 
@@ -32,39 +26,10 @@ function jobsReducer(state, action) {
             userLocation : location
         }
     }
-    if(action.type === "HANDLE_CHANGE"){
-        return {
-            ...state,
-            [action.payload.name] : action.payload.value
-        }
-    }
-    if(action.type === "SET_LOADING"){
-        return {
-            ...state,
-            isLoading : !state.isLoading
-        }
-    }
     if(action.type === "TOGGLE_SIDEBAR"){
         return {
             ...state,
             showSideBar : !state.showSideBar
-        }
-    }
-    if(action.type === "CLEAR_VALUES"){
-        return {
-            ...state,
-            company : '',
-            position : '',
-            location : '',
-            jobType : 'full-time',
-            filterJobType : 'all',
-            status : 'pending',
-            filterStatus : 'all',
-            isEditing : false,
-            search : '',
-            sort : 'latest',
-            showLogoutButton : false,
-            showSideBar : false,
         }
     }
     if(action.type === "TOGGLE_LOGOUT_BUTTON"){

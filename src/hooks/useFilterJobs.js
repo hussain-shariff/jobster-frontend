@@ -14,5 +14,7 @@ const fetchJobs = async (status, jobType, search, sort) => {
 }
 
 export const getJobs = (status, jobType, search, sort) => {
-	return useQuery("get-jobs", () => fetchJobs(status, jobType, search, sort))
+	return useQuery(["get-jobs", status, jobType, search, sort], () =>
+		fetchJobs(status, jobType, search, sort)
+	)
 }
