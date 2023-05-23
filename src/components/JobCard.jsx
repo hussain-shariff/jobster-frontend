@@ -11,9 +11,11 @@ import JobItem from './JobItem'
 import moment from 'moment'
 import { useAppContext } from '../context';
 import { notifyError } from '../hooks/useNotifications';
+import deleteJob from '../hooks/useDelete';
 
 function JobCard({jobDetails}) {
-    const {deleteOneJob, editJob, state} = useAppContext()
+    const {mutate} = deleteJob()
+    const {editJob, state} = useAppContext()
     const {user} = state
     let icon;
     if(jobDetails.status.toLowerCase() === "pending"){
@@ -31,7 +33,7 @@ function JobCard({jobDetails}) {
             notifyError('test user! read only')
         }
         else{
-            deleteOneJob(jobDetails._id)
+            mutate(jobDetails._id)
         }
     }
 

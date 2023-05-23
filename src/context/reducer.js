@@ -5,7 +5,6 @@ export const initialState = {
     userLocation : "",
     showLogoutButton : false,
     showSideBar : false,
-    currentPage : 'Stats',
     loading : false,
     isEditing : false,
     editJobId : '',
@@ -30,26 +29,6 @@ function jobsReducer(state, action) {
         return {
             ...state,
             showSideBar : !state.showSideBar
-        }
-    }
-
-    if(action.type === "SET_CURRENT_PAGE"){
-        return {
-            ...state,
-            currentPage : action.page
-        }
-    }
-    if(action.type === "DELETE_JOB"){
-        const updatedJobs = state.jobs.filter(job=> job._id !== action.id)
-        return {
-            ...state,
-            jobs : updatedJobs
-        }
-    }
-    if(action.type === "UPDATE_USER_SUCCESSFULL"){
-        return {
-            ...state,
-            user : state.updatedUser
         }
     }
     if(action.type === "SET_EDIT_JOB_DATA"){

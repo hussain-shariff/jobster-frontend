@@ -11,18 +11,9 @@ function JobsProvider({children}) {
     const setUser = (userData) =>{
       dispatch({type : "SET_USER", userData})
     }
-    
-    const deleteOneJob = async (id) =>{
-      await deleteJob(id)
-      dispatch({ type : "DELETE_JOB", id})
-    }
 
     const toggleSidebar = () => {
       dispatch({ type: 'TOGGLE_SIDEBAR' });
-    };
-
-    const setcurrentPage = (page) => {
-      dispatch({ type: 'SET_CURRENT_PAGE', page });
     };
 
     const editJob = async (id) =>{
@@ -40,25 +31,14 @@ function JobsProvider({children}) {
         state.editJobId
       )
     }
-    const updateUser = async ()=>{
-      await useUpdateUser(
-        state.updatedUser,
-        state.lastname,
-        state.userLocation
-      )
-      dispatch({ type : "UPDATE_USER_SUCCESSFULL"})
-    }
 
 
     const values = {
         state,
         setUser,
         toggleSidebar,
-        setcurrentPage,
-        deleteOneJob,
         editJob,
         updateJob,
-        updateUser,
     }
   return (
     <jobContext.Provider value={values}>
