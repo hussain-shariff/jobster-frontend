@@ -3,12 +3,17 @@ import MainNav from "../components/MainNav"
 import SideBar from "../components/SideBar"
 import { useAppContext } from "../context"
 import { useNavigate } from "react-router-dom"
+import { useQuery } from "react-query"
+import { fetchUser } from "../hooks/useGetUser"
 
 const Layout = ({ children }) => {
-	const { state } = useAppContext()
+	const { state, setUser } = useAppContext()
 	const { showSideBar } = state
     const navigate = useNavigate()
     const user = localStorage.getItem("user")
+	const { data, isLoading } = useQuery("get-user", fetchUser, {
+		onSuccess: (data) => setUser(data.data),
+	})
     
 	useEffect(() => {
 		if (!user) {
