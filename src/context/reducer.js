@@ -3,15 +3,9 @@ export const initialState = {
     updatedUser : '',
     lastname : '',
     userLocation : "",
-    showLogoutButton : false,
     showSideBar : false,
-    loading : false,
     isEditing : false,
     editJobId : '',
-    company : '',
-    position : '',
-    location : '',
-    isLoading: false
 }
 
 function jobsReducer(state, action) {

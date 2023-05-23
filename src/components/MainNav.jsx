@@ -9,14 +9,13 @@ import { useAppContext } from "../context"
 
 function MainNav() {
 	const [isLogoutBtn, setisLogoutBtn] = useState(false)
-	const { toggleSidebar, state, setcurrentPage } = useAppContext()
+	const { toggleSidebar, state } = useAppContext()
 	const { showSideBar } = state
 	const navigate = useNavigate()
 
 	const handleLogOut = () => {
 		localStorage.removeItem("user")
 		localStorage.removeItem("token")
-		setcurrentPage("Stats")
 		navigate("/")
 	}
 
