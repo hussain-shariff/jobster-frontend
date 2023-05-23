@@ -6,8 +6,13 @@ import { useAppContext } from "../context"
 import { notifyError } from "../hooks/useNotifications"
 import { postJob } from "../hooks/useCreateJob"
 import { statusOptions, jobTypeOptions } from "../searchOptions"
+import { useParams } from "react-router-dom"
+import { getJob } from "../hooks/useGetJob"
+import useEditJob from '../hooks/useEditJob'
 
-function AddJob() {
+function AddJob({isEdit}) {
+	const params = useParams()
+	const {id} = params
 	const [jobInput, setjobInput] = useState({
 		status: "pending",
 		jobType: "full-time",
@@ -15,9 +20,11 @@ function AddJob() {
 		position: "",
 		location: "",
 	})
-	const { mutate, isLoading } = postJob()
-	const { updateJob, state, clearValues } = useAppContext()
-	const { isEditing, user } = state
+	const {data} = getJob(id, setjobInput)
+	const {mutate : updateJobMutation} = useEditJob()
+	const { mutate } = postJob()
+	const { state } = useAppContext()
+	const { user } = state
 	const selectStyles = {
 		control: (baseStyles, state) => ({
 			...baseStyles,
@@ -62,9 +69,8 @@ function AddJob() {
 		e.preventDefault()
 		if (user === "test user") {
 			notifyError("test user ! read only.")
-		} else if (isEditing) {
-			updateJob()
-			clearValues()
+		} else if (isEdit) {
+			updateJobMutation({data : jobInput, id})
 		} else {
 			mutate(jobInput)
 			setjobInput({
@@ -84,7 +90,7 @@ function AddJob() {
 				onSubmit={handleSubmit}
 			>
 				<h1 className=" text-white text-center text-2xl md:text-3xl">
-					{isEditing ? "Edit Job" : "Add Job"}
+					{isEdit ? "Edit Job" : "Add Job"}
 				</h1>
 				<div className="grid grid-cols-1 gap-x-5 gap-y-4 md:grid-cols-3 md:gap-y-7 mt-5">
 					<JobInput

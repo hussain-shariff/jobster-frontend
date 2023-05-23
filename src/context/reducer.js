@@ -4,8 +4,6 @@ export const initialState = {
     lastname : '',
     userLocation : "",
     showSideBar : false,
-    isEditing : false,
-    editJobId : '',
 }
 
 function jobsReducer(state, action) {
@@ -23,20 +21,6 @@ function jobsReducer(state, action) {
         return {
             ...state,
             showSideBar : !state.showSideBar
-        }
-    }
-    if(action.type === "SET_EDIT_JOB_DATA"){
-        const job = state.jobs.find(job=> job._id === action.id)
-        const {_id, position, company, location, jobType, status } = job;
-        return {
-            ...state,
-            isEditing : true,
-            editJobId : _id,
-            position, 
-            company, 
-            location,
-            jobType, 
-            status
         }
     }
 }

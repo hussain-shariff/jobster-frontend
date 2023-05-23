@@ -41,10 +41,10 @@ function App() {
 						}
 					></Route>
 					<Route
-						path="/editJob"
+						path="/editJob/:id"
 						element={
 							<Layout>
-								<AddJob />
+								<AddJob isEdit={true} />
 							</Layout>
 						}
 					></Route>
