@@ -5,6 +5,7 @@ import { useAppContext } from "../context"
 import { useNavigate } from "react-router-dom"
 import { useQuery } from "react-query"
 import { fetchUser } from "../hooks/useGetUser"
+import { ToastContainer } from "react-toastify"
 
 const Layout = ({ children }) => {
 	const { state, setUser } = useAppContext()
@@ -26,6 +27,7 @@ const Layout = ({ children }) => {
 			<MainNav />
 			{showSideBar && <SideBar />}
 			{children}
+			<ToastContainer />
 		</div>
 	)
 }

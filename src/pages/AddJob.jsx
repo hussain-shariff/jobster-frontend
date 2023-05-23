@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import JobInput from "../components/JobInput"
 import Select from "react-select"
-import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { useAppContext } from "../context"
 import { notifyError } from "../hooks/useNotifications"
@@ -148,7 +147,6 @@ function AddJob() {
 						</button>
 					</div>
 				</div>
-				<ToastContainer />
 			</form>
 		</div>
 	)
