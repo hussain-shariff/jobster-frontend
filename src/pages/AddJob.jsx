@@ -9,10 +9,16 @@ import { postJob } from "../hooks/useCreateJob"
 import { statusOptions, jobTypeOptions } from "../searchOptions"
 
 function AddJob() {
+	const [jobInput, setjobInput] = useState({
+		status: "pending",
+		jobType: "full-time",
+		company: "",
+		position: "",
+		location: "",
+	})
 	const { mutate, isLoading } = postJob()
-	const { createJob, updateJob, state, handleChange, clearValues } =
-		useAppContext()
-	const { isEditing, position, company, location, user } = state
+	const { updateJob, state, clearValues } = useAppContext()
+	const { isEditing, user } = state
 	const selectStyles = {
 		control: (baseStyles, state) => ({
 			...baseStyles,
@@ -28,27 +34,47 @@ function AddJob() {
 	const handleSearch = (e) => {
 		const name = e.target.name
 		const value = e.target.value
-		handleChange(name, value)
+		setjobInput((prev) => {
+			return {
+				...prev,
+				[e.target.name]: e.target.value,
+			}
+		})
 	}
 
 	const handleStatus = (e) => {
-		handleChange("status", e.value)
+		setjobInput((prev) => {
+			return {
+				...prev,
+				status: e.value,
+			}
+		})
 	}
 	const handleJobType = (e) => {
-		handleChange("jobType", e.value)
+		setjobInput((prev) => {
+			return {
+				...prev,
+				jobType: e.value,
+			}
+		})
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		if (user === "test use") {
+		if (user === "test user") {
 			notifyError("test user ! read only.")
 		} else if (isEditing) {
 			updateJob()
 			clearValues()
 		} else {
-			mutate()
-			createJob()
-			clearValues()
+			mutate(jobInput)
+			setjobInput({
+				status: "pending",
+				jobType: "full-time",
+				company: "",
+				position: "",
+				location: "",
+			})
 		}
 	}
 
@@ -65,19 +91,19 @@ function AddJob() {
 					<JobInput
 						name="company"
 						handleChange={handleSearch}
-						value={company}
+						value={jobInput.company}
 						type="text"
 					/>
 					<JobInput
 						name="position"
 						handleChange={handleSearch}
-						value={position}
+						value={jobInput.position}
 						type="text"
 					/>
 					<JobInput
 						name="location"
 						handleChange={handleSearch}
-						value={location}
+						value={jobInput.location}
 						type="text"
 					/>
 					<Select
@@ -108,7 +134,15 @@ function AddJob() {
 							type="button"
 							className="bg-white/30 rounded-md w-36 hover:bg-white/40
                 transition ease-out duration-300 py-2 md:py-0 text-white"
-							onClick={() => clearValues()}
+							onClick={() =>
+								setjobInput({
+									status: "pending",
+									jobType: "full-time",
+									company: "",
+									position: "",
+									location: "",
+								})
+							}
 						>
 							Clear
 						</button>

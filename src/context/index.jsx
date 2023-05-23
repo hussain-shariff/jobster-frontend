@@ -1,7 +1,6 @@
 import React, {createContext, useState, useContext, useReducer } from 'react'
 import jobsReducer, {initialState} from './reducer'
 import deleteJob from '../hooks/useDelete'
-import useCreateJob from '../hooks/useCreateJob'
 import useEditJob from '../hooks/useEditJob'
 import useUpdateUser from '../hooks/useUpdateUser'
 const jobContext = createContext()
@@ -9,23 +8,13 @@ const jobContext = createContext()
 function JobsProvider({children}) {
     const [state, dispatch] = useReducer(jobsReducer, initialState)
 
-    const getUser = (userData) =>{
+    const setUser = (userData) =>{
       dispatch({type : "SET_USER", userData})
     }
     
     const deleteOneJob = async (id) =>{
       await deleteJob(id)
       dispatch({ type : "DELETE_JOB", id})
-    }
-    
-    const createJob = async () =>{
-      await useCreateJob(
-        state.company,
-        state.position,
-        state.location,
-        state.jobType,
-        state.status,
-      )
     }
 
     const toggleSidebar = () => {
@@ -63,11 +52,10 @@ function JobsProvider({children}) {
 
     const values = {
         state,
-        getUser,
+        setUser,
         toggleSidebar,
         setcurrentPage,
         deleteOneJob,
-        createJob,
         editJob,
         updateJob,
         updateUser,
