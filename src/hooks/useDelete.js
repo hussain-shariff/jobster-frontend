@@ -2,9 +2,11 @@ import { notifySuccess, notifyError } from "../hooks/useNotifications"
 import axios from "axios"
 import { useMutation, useQueryClient } from "react-query"
 
+const baseUrl = import.meta.env.VITE_API_URL
+
 const fetchApi = async (id) => {
     const token = localStorage.getItem("token")
-	return await axios.delete(`https://jobs-api-81wf.onrender.com/api/v1/jobs/${id}`, {
+	return await axios.delete(`${baseUrl}/jobs/${id}`, {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},

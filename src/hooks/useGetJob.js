@@ -1,10 +1,12 @@
 import axios from "axios"
 import { useQuery } from "react-query"
 
+const baseUrl = import.meta.env.VITE_API_URL
+
 const fetchApi = async (id) => {
 	const token = localStorage.getItem("token")
 	return await axios.get(
-		`https://jobs-api-81wf.onrender.com/api/v1/jobs/${id}`,
+		`${baseUrl}/jobs/${id}`,
 		{
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -15,6 +17,7 @@ const fetchApi = async (id) => {
 
 export const getJob = (id, setjobInput) => {
 	return useQuery(["get-job", id], () => fetchApi(id), {
+		enabled: !!id,
 		select: (data) => data.data,
 		onSuccess: (data) => {
 			setjobInput({

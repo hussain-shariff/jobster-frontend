@@ -2,10 +2,12 @@ import { notifySuccess } from "./useNotifications"
 import axios from "axios"
 import { useMutation, useQueryClient } from "react-query"
 
+const baseUrl = import.meta.env.VITE_API_URL
+
 const fetchApi = async ({data, id}) => {
 	const token = localStorage.getItem("token")
 	return await axios.patch(
-		`https://jobs-api-81wf.onrender.com/api/v1/jobs/${id}`,
+		`${baseUrl}/jobs/${id}`,
 		data,
 		{
 			headers: {

@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "react-query"
 
 const fetchApi = (data) => {
     const token = localStorage.getItem('token')
-    return axios.patch('https://jobs-api-81wf.onrender.com/api/v1/jobs', data, {
+    return axios.patch('${baseUrl}/jobs', data, {
         headers : {
             Authorization : `Bearer ${token}` 
         }
@@ -18,7 +18,7 @@ const useUpdateUser = async (username, lastname, location) =>{
         lastname ,
         location
     }
-    const res = await fetch(`https://jobs-api-81wf.onrender.com/api/v1/jobs`, {
+    const res = await fetch(`${baseUrl}/jobs`, {
             method : "PATCH",
             headers : {
                 'content-type' : 'application/json',

@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useQuery } from "react-query"
 
+const baseUrl = import.meta.env.VITE_API_URL
+
 export const fetchStats = () => {
 	const token = localStorage.getItem("token")
-	return axios.get("https://jobs-api-81wf.onrender.com/api/v1/jobs", {
+	return axios.get(`${baseUrl}/jobs`, {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},

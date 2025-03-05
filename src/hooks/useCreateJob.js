@@ -2,10 +2,12 @@ import { notifySuccess } from "./useNotifications"
 import axios from "axios"
 import { useMutation } from "react-query"
 
+const baseUrl = import.meta.env.VITE_API_URL
+
 const fetchApi = async (data) => {
     const token = localStorage.getItem("token")
 	return await axios.post(
-		`https://jobs-api-81wf.onrender.com/api/v1/jobs`, data, {
+        `${baseUrl}/jobs`, data, {
             headers :{
                 Authorization: `Bearer ${token}`
             }
