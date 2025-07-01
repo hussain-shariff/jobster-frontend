@@ -7,10 +7,11 @@ import InputForm from "../components/InputForm"
 import { registerUser } from "../hooks/useRegister"
 import { loginUser } from "../hooks/useLogin"
 import { useNavigate } from "react-router-dom"
+import { notifySuccess } from "../hooks/useNotifications"
 
 function Register() {
 	const navigate = useNavigate()
-	const { mutate: demoMutate, isLoading: demoLoading } = loginUser(navigate)
+	const { mutate: demoMutate, isLoading: demoLoading } = loginUser()
 	const { mutate: registerMutate, isLoading: registerLoading } = registerUser(navigate)
 	const [formData, setformData] = useState({
 		Username: "",
@@ -20,11 +21,20 @@ function Register() {
 
 	const handleSubmit = (demo) => {
 		const creds = {
-			username: demo ? "" : formData.Username,
-			email: demo ? "testUser@test.com" : formData.Email,
-			password: demo ? "secret" : formData.Password,
+			username: demo ? "demo" : formData.Username,
+			email: demo ? import.meta.env.VITE_DEMO_EMAIL : formData.Email,
+			password: demo ? import.meta.env.VITE_DEMO_PASSWORD : formData.Password,
 		}
-		demo ? demoMutate(creds) : registerMutate(creds)
+		demo ? demoMutate(creds, {
+			onSuccess: (data) => {
+				notifySuccess("Signnnnn in successfull")
+				localStorage.setItem("user", data.data.user)
+				localStorage.setItem("token", data.data.token)
+				setTimeout(() => {
+					navigate("/stats")
+				}, 2000)
+			}
+		}) : registerMutate(creds)
 		setformData({
 			Username: "",
 			Email: "",

@@ -1,4 +1,4 @@
-import { notifySuccess, notifyError } from "./useNotifications"
+import { notifyError } from "./useNotifications"
 import axios from "axios"
 import { useMutation } from "react-query"
 
@@ -10,16 +10,8 @@ const Login = async (credentials) => {
 		credentials
 	)
 }
-export const loginUser = (navigate) => {
+export const loginUser = () => {
 	return useMutation(Login, {
-		onSuccess: (data) => {
-			notifySuccess("Sign in successfull")
-			localStorage.setItem("user", data.data.user)
-			localStorage.setItem("token", data.data.token)
-			setTimeout(() => {
-				navigate("/stats")
-			}, 2000)
-		},
 		onError: () => notifyError("Invalid Email or password"),
 	})
 }
