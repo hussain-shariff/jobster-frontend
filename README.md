@@ -3,7 +3,7 @@
 A MERN-stack job tracking web app , authentication and authorization using JWT
 
 
-project in action - [jobster]([https://jobster-frontend.vercel.app](https://jobster-frontend-3g53.vercel.app/))
+project in action - [jobster](https://jobster-frontend.vercel.app/)
 
 # Tech Stack
 
