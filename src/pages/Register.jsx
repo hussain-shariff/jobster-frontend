@@ -27,7 +27,7 @@ function Register() {
 		}
 		demo ? demoMutate(creds, {
 			onSuccess: (data) => {
-				notifySuccess("Signnnnn in successfull")
+				notifySuccess("Sign in successfull")
 				localStorage.setItem("user", data.data.user)
 				localStorage.setItem("token", data.data.token)
 				setTimeout(() => {
