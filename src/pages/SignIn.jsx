@@ -17,8 +17,8 @@ function SignIn() {
 
 	const handleSubmit = (demo) => {
 		const creds = {
-			email: demo ? "testUser@test.com" : formData.Email,
-			password: demo ? "secret" : formData.Password,
+			email: demo ? import.meta.env.VITE_DEMO_EMAIL : formData.Email,
+			password: demo ? import.meta.env.VITE_DEMO_PASSWORD : formData.Password,
 		}
 		mutate(creds)
 		setformData({

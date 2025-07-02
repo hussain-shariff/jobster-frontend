@@ -21,7 +21,7 @@ function Register() {
 
 	const handleSubmit = (demo) => {
 		const creds = {
-			username: demo ? "demo" : formData.Username,
+			username: demo ? "test user" : formData.Username,
 			email: demo ? import.meta.env.VITE_DEMO_EMAIL : formData.Email,
 			password: demo ? import.meta.env.VITE_DEMO_PASSWORD : formData.Password,
 		}
